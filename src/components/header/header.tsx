@@ -1,6 +1,5 @@
-import { Button } from "./button";
-import type { Device } from "./button";
-import styles from "./header.module.css";
+import { Button, type Device } from "../button/button";
+import styles from "./header.module.scss";
 
 const defaultLinks = [
   { href: "#how", label: "Как это работает" },

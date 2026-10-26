@@ -10,20 +10,17 @@
   font-family: var(--font-sans);
   line-height: 1;
   transition: box-shadow 0.15s ease;
-}
 
-.button:hover {
-  box-shadow: inset 0 0 0 var(--border-width-hover) currentColor;
-}
+  &:hover,
+  &:focus-visible {
+    box-shadow: inset 0 0 0 var(--border-width-hover) currentColor;
+  }
 
-.button:focus-visible {
-  box-shadow: inset 0 0 0 var(--border-width-hover) currentColor;
-}
-
-.button:disabled,
-.button[aria-disabled="true"] {
-  opacity: var(--opacity-disabled);
-  pointer-events: none;
+  &:disabled,
+  &[aria-disabled="true"] {
+    opacity: var(--opacity-disabled);
+    pointer-events: none;
+  }
 }
 
 .primary,
@@ -40,6 +37,16 @@
   padding-inline: var(--button-primary-padding-x);
   border-radius: var(--radius-pill);
   font-size: var(--text-button-size-mobile);
+
+  &.desktop {
+    width: var(--button-primary-width-desktop);
+    height: var(--button-primary-height-desktop);
+    font-size: var(--text-button-size-desktop);
+  }
+
+  &.mobile {
+    width: min(100%, var(--content-width-mobile));
+  }
 }
 
 .primary {
@@ -61,11 +68,11 @@
   box-shadow: inset 0 0 0 var(--border-width) currentColor;
   font-size: var(--text-outline-size);
   font-weight: var(--font-weight-regular);
-}
 
-.outline:hover,
-.outline:focus-visible {
-  box-shadow: inset 0 0 0 var(--border-width-hover) currentColor;
+  &:hover,
+  &:focus-visible {
+    box-shadow: inset 0 0 0 var(--border-width-hover) currentColor;
+  }
 }
 
 .booking,
@@ -79,6 +86,14 @@
   width: min(100%, var(--field-width-mobile));
   height: var(--button-booking-height);
   font-size: var(--text-booking-size);
+
+  &.desktop {
+    width: var(--button-booking-width-desktop);
+  }
+
+  &.mobile {
+    width: min(100%, var(--field-width-mobile));
+  }
 }
 
 .forward {
@@ -86,31 +101,14 @@
   height: var(--button-forward-height);
   padding: var(--button-forward-padding);
   font-size: var(--text-forward-size);
-}
 
-.primary.desktop,
-.inverse.desktop {
-  width: var(--button-primary-width-desktop);
-  height: var(--button-primary-height-desktop);
-  font-size: var(--text-button-size-desktop);
-}
+  &.desktop {
+    width: var(--button-forward-width-desktop);
+  }
 
-.booking.desktop {
-  width: var(--button-booking-width-desktop);
-}
-
-.forward.desktop {
-  width: var(--button-forward-width-desktop);
-}
-
-.primary.mobile,
-.inverse.mobile,
-.forward.mobile {
-  width: min(100%, var(--content-width-mobile));
-}
-
-.booking.mobile {
-  width: min(100%, var(--field-width-mobile));
+  &.mobile {
+    width: min(100%, var(--content-width-mobile));
+  }
 }
 
 @media (min-width: 1024px) {

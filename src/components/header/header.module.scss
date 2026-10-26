@@ -38,28 +38,28 @@
   min-width: var(--page-width-desktop);
   height: var(--header-height-desktop);
   padding-inline: var(--header-padding-x-desktop);
-}
 
-.desktop .links {
-  display: flex;
+  .links {
+    display: flex;
+  }
 }
 
 .mobile {
   width: 100%;
   max-width: var(--page-width-mobile);
-}
 
-.mobile .links {
-  display: none;
+  .links {
+    display: none;
+  }
 }
 
 @media (min-width: 1024px) {
   .header:not(.mobile) {
     height: var(--header-height-desktop);
     padding-inline: var(--header-padding-x-desktop);
-  }
 
-  .header:not(.mobile) .links {
-    display: flex;
+    .links {
+      display: flex;
+    }
   }
 }

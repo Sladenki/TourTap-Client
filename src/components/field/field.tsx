@@ -1,6 +1,6 @@
 import type { InputHTMLAttributes } from "react";
-import styles from "./field.module.css";
-import type { Device } from "./button";
+import styles from "./field.module.scss";
+import type { Device } from "../button/button";
 
 type BookingFieldProps = {
   device?: Device;

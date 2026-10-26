@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import { Button } from "../components/button";
-import { BookingField } from "../components/field";
-import { Card } from "../components/card";
-import { Header } from "../components/header";
-import styles from "./kit.module.css";
+import { Button } from "@/components/button/button";
+import { BookingField } from "@/components/field/field";
+import { Card } from "@/components/card/card";
+import { Header } from "@/components/header/header";
+import styles from "./kit.module.scss";
 
 export const metadata: Metadata = {
   title: "TourTap UI Kit",

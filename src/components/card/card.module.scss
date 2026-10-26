@@ -5,22 +5,25 @@
   min-width: 0;
 }
 
+.subtle,
+.accent,
+.mint {
+  border-radius: var(--radius-card);
+}
+
 .subtle {
   background: var(--background-subtle);
   color: var(--text-primary);
-  border-radius: var(--radius-card);
 }
 
 .accent {
   background: var(--accent-primary);
   color: var(--foreground-ink);
-  border-radius: var(--radius-card);
 }
 
 .mint {
   background: var(--accent-mint);
   color: var(--foreground-ink);
-  border-radius: var(--radius-card);
 }
 
 .elevated {

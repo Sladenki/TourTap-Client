@@ -1,5 +1,5 @@
 import type { ButtonHTMLAttributes } from "react";
-import styles from "./button.module.css";
+import styles from "./button.module.scss";
 
 export type ButtonVariant = "primary" | "inverse" | "outline" | "booking" | "forward";
 export type Device = "desktop" | "mobile";

@@ -1,4 +1,4 @@
-import styles from "./card.module.css";
+import styles from "./card.module.scss";
 
 export type CardVariant = "subtle" | "accent" | "mint" | "elevated";
 export type CardPadding = "md" | "lg" | "none";
