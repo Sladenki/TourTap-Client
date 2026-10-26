@@ -74,6 +74,10 @@
   --text-body-sm-leading: 1.5;
   --text-button-size-desktop: 20px;
   --text-button-size-mobile: 16px;
+  --text-outline-size: 12px;
+  --text-booking-size: 14px;
+  --text-forward-size: 13px;
+  --text-field-size: 14px;
   --text-label-size: 11px;
   --text-nav-size: 14px;
   --text-logo-size: 27px;
@@ -119,7 +123,12 @@
   --card-padding-mobile: 24px;
   --button-primary-height-desktop: 76px;
   --button-primary-height-mobile: 64px;
+  --button-primary-width-desktop: 380px;
   --button-primary-padding-x: 28px;
+  --button-booking-width-desktop: 664px;
+  --button-forward-width-desktop: 436px;
+  --field-width-desktop: 664px;
+  --field-width-mobile: 306px;
   --button-outline-height: 40px;
   --button-outline-padding-y: 12px;
   --button-outline-padding-x: 22px;

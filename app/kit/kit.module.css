@@ -1,0 +1,159 @@
+.page {
+  background: var(--background-canvas);
+  color: var(--text-primary);
+}
+
+.intro,
+.section {
+  box-sizing: border-box;
+  width: min(100%, var(--content-width-desktop));
+  max-width: 100%;
+  min-width: 0;
+  margin-inline: auto;
+  padding: var(--section-padding-y-mobile) var(--gutter-mobile);
+}
+
+.intro {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.kicker,
+.caption {
+  margin: 0;
+  font-size: var(--text-label-size);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0;
+  line-height: 1.3;
+  text-transform: uppercase;
+}
+
+.title,
+.heading {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: var(--font-weight-extrabold);
+  line-height: var(--text-h1-leading);
+}
+
+.title {
+  font-size: var(--text-h1-size-mobile);
+}
+
+.heading {
+  font-size: var(--text-h2-size-mobile);
+}
+
+.lead,
+.copy {
+  margin: 0;
+  max-width: 640px;
+  font-size: var(--text-body-md-size);
+  line-height: var(--text-body-md-leading);
+  color: var(--text-secondary);
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.scroll {
+  width: 100%;
+  min-width: 0;
+  overflow-x: auto;
+  border-block: var(--border-width) solid var(--border-default);
+}
+
+.phone {
+  width: var(--page-width-mobile);
+  overflow: hidden;
+  border: var(--border-width) solid var(--border-default);
+  border-radius: var(--radius-card);
+}
+
+.grid,
+.stack,
+.pair {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.row {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.cardTitle {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--text-h3-size-mobile);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--text-h3-leading);
+}
+
+.cardCopy {
+  margin: 0;
+  font-size: var(--text-body-md-size);
+  line-height: var(--text-body-md-leading);
+}
+
+.cards {
+  display: grid;
+  gap: 24px;
+}
+
+.stepPost {
+  max-width: 548px;
+}
+
+.stepPage,
+.stepBooking {
+  max-width: 776px;
+}
+
+.payment {
+  max-width: 652px;
+}
+
+.journey {
+  max-width: 672px;
+}
+
+.excursion {
+  max-width: 720px;
+}
+
+.excursionBody {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: var(--card-padding);
+}
+
+@media (min-width: 1024px) {
+  .intro,
+  .section {
+    padding: var(--section-padding-y-desktop) var(--gutter-desktop);
+  }
+
+  .title {
+    font-size: var(--text-h1-size-desktop);
+  }
+
+  .heading {
+    font-size: var(--text-h2-size-desktop);
+  }
+
+  .cardTitle {
+    font-size: var(--text-h3-size-desktop);
+  }
+
+  .cards {
+    grid-template-columns: 1fr 1fr;
+  }
+}

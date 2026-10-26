@@ -1,0 +1,46 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  min-width: 0;
+}
+
+.subtle {
+  background: var(--background-subtle);
+  color: var(--text-primary);
+  border-radius: var(--radius-card);
+}
+
+.accent {
+  background: var(--accent-primary);
+  color: var(--foreground-ink);
+  border-radius: var(--radius-card);
+}
+
+.mint {
+  background: var(--accent-mint);
+  color: var(--foreground-ink);
+  border-radius: var(--radius-card);
+}
+
+.elevated {
+  background: var(--surface-elevated);
+  color: var(--text-primary);
+  border: var(--border-width) solid var(--border-default);
+  border-radius: var(--radius-excursion);
+}
+
+.md {
+  padding: var(--card-padding);
+  gap: 22px;
+}
+
+.lg {
+  padding: var(--card-padding-lg);
+  gap: 24px;
+}
+
+.none {
+  padding: 0;
+  gap: 0;
+}
