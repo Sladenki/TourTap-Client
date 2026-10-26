@@ -69,14 +69,13 @@ const footerLinks = [
 
 function Arrow() {
   return (
-    <svg className={styles.arrowIcon} viewBox="0 0 16 16" aria-hidden="true">
+    <svg className={styles.arrowIcon} viewBox="0 0 23 23" aria-hidden="true">
       <path
-        d="M4 12 12 4M7 4h5v5"
+        d="M16.291 16.291V6.709H6.709M16.291 6.709 6.709 16.291"
         fill="none"
         stroke="currentColor"
-        strokeWidth="1.6"
+        strokeWidth="1.8"
         strokeLinecap="round"
-        strokeLinejoin="round"
       />
     </svg>
   );
@@ -84,15 +83,7 @@ function Arrow() {
 
 function OutlinePlane() {
   return (
-    <svg className={styles.plane} viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <path
-        d="M3.5 12 20.5 4.2 13.2 20.2 11.4 13.6 3.5 12Z"
-        stroke="currentColor"
-        strokeWidth="1.4"
-        strokeLinejoin="round"
-      />
-      <path d="M11.4 13.5 20.5 4.2" stroke="currentColor" strokeWidth="1.4" />
-    </svg>
+    <img className={styles.plane} src="/assets/icons/send.svg" alt="" width={24} height={24} />
   );
 }
 
@@ -104,27 +95,28 @@ export default function Home() {
       <section className={styles.hero}>
         <Header actionHref="#start" />
         <div className={styles.cover}>
+          <p className={styles.kicker}>
+            <span className={styles.marker} />
+            Для гидов, которые ведут за собой
+          </p>
+          <h1 className={styles.heroTitle}>
+            ВАШ ПОСТ —
+            <br />
+            УЖЕ СТРАНИЦА
+            <br />
+            ЭКСКУРСИИ.
+          </h1>
           <div className={styles.coverCopy}>
-            <p className={styles.kicker}>
-              <span className={styles.marker} />
-              Для гидов, которые ведут за собой
-            </p>
-            <h1 className={styles.heroTitle}>
-              ВАШ ПОСТ —
-              <br />
-              УЖЕ СТРАНИЦА
-              <br />
-              ЭКСКУРСИИ.
-            </h1>
             <p className={styles.lead}>
-              Перешлите пост из Telegram боту. TourTap соберет страницу
-              <br />
-              с офертой, оплатой по СБП и чеком НПД за 20 секунд.
+              Перешлите пост из Telegram боту. TourTap соберет страницу с офертой,
+              оплатой по СБП и чеком НПД за 20 секунд.
             </p>
-            <Button href="#start">
-              Создать экскурсию
-              <Arrow />
-            </Button>
+            <div className={styles.heroAction}>
+              <Button href="#start">
+                Создать экскурсию
+                <Arrow />
+              </Button>
+            </div>
             <p className={styles.badgeLine}>
               <span>БЕЗ КОДА</span>
               Ваш контент. Готовый маршрут к брони.
@@ -146,12 +138,17 @@ export default function Home() {
       </div>
 
       <div className={styles.marquee}>
-        {marquee.map((item) => (
-          <span className={styles.marqueeItem} key={item}>
-            {item}
-            <span className={styles.asterisk}>*</span>
-          </span>
-        ))}
+        {marquee.flatMap((item) => [
+          <span key={item}>{item}</span>,
+          <img
+            key={`${item}-mark`}
+            className={styles.asterisk}
+            src="/assets/icons/asterisk.svg"
+            alt=""
+            width={24}
+            height={24}
+          />,
+        ])}
       </div>
 
       <div className={styles.page}>
@@ -200,7 +197,7 @@ export default function Home() {
           </div>
           <div className={styles.stack}>
             <Card variant="accent" padding="md" className={styles.readyCard}>
-              <div>
+              <div className={styles.readyCopy}>
                 <p className={styles.step}>02 / СТРАНИЦА</p>
                 <h3 className={styles.h3}>
                   20 секунд.
@@ -214,9 +211,12 @@ export default function Home() {
               <aside className={styles.ready}>
                 <p className={styles.readyLabel}>СТРАНИЦА ГОТОВА</p>
                 <ul>
-                  <li>Описание и фото</li>
-                  <li>Оферта</li>
-                  <li>Онлайн-оплата</li>
+                  {["Описание и фото", "Оферта", "Онлайн-оплата"].map((item) => (
+                    <li key={item}>
+                      <img src="/assets/icons/circle-check.svg" alt="" width={17} height={17} />
+                      {item}
+                    </li>
+                  ))}
                 </ul>
               </aside>
             </Card>
@@ -230,19 +230,13 @@ export default function Home() {
                 </h3>
               </div>
               <div className={styles.notice}>
-                <svg className={styles.noticeIcon} viewBox="0 0 24 24" aria-hidden="true">
-                  <rect
-                    x="4"
-                    y="5"
-                    width="16"
-                    height="14"
-                    rx="2"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.6"
-                  />
-                  <path d="M8 9h8M8 13h5" fill="none" stroke="currentColor" strokeWidth="1.6" />
-                </svg>
+                <img
+                  className={styles.noticeIcon}
+                  src="/assets/icons/ticket-check.svg"
+                  alt=""
+                  width={28}
+                  height={28}
+                />
                 <span>
                   <strong>Новое бронирование</strong>
                   <small>2 гостя · Петербург с высоты крыш</small>
@@ -292,7 +286,7 @@ export default function Home() {
                   <i />
                 </span>
                 <span className={styles.url}>tourtap / ваша-экскурсия</span>
-                <span className={styles.share} aria-hidden="true" />
+                <img className={styles.share} src="/assets/icons/lock.svg" alt="" width={12} height={12} />
               </div>
               <img
                 src={assets.excursion}
@@ -316,7 +310,7 @@ export default function Home() {
                   <small>Выберите количество гостей</small>
                   <span className={styles.chevron} aria-hidden="true" />
                 </div>
-                <Button href="#start">
+                <Button className={styles.bookAction} href="#start">
                   Забронировать
                   <Arrow />
                 </Button>

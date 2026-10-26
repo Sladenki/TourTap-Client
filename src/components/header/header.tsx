@@ -28,12 +28,14 @@ export function Header({
     <header className={classNames(styles.header, layout && styles[layout])}>
       <a className={styles.logo} href="/">
         <svg className={styles.mark} viewBox="0 0 32 32" aria-hidden="true">
-          <rect width="32" height="32" rx="9" fill="currentColor" />
+          <rect width="32" height="32" rx="10" fill="currentColor" />
           <path
-            d="M8 16.2 23.2 9.2 16.4 23.4 14.6 17.6 8 16.2Z"
-            fill="#fff"
+            d="M20.791 20.791V11.209H11.209M20.791 11.209 11.209 20.791"
+            fill="none"
+            stroke="#20201e"
+            strokeWidth="1.8"
+            strokeLinecap="round"
           />
-          <path d="M14.7 17.4 23.2 9.2" fill="none" stroke="#fff" strokeWidth="1.2" />
         </svg>
         TourTap
       </a>
@@ -46,14 +48,13 @@ export function Header({
       </nav>
       <Button variant="outline" href={actionHref}>
         {actionLabel}
-        <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
+        <svg viewBox="0 0 23 23" width="16" height="16" aria-hidden="true">
           <path
-            d="M4 12 12 4M7 4h5v5"
+            d="M16.291 16.291V6.709H6.709M16.291 6.709 6.709 16.291"
             fill="none"
             stroke="currentColor"
-            strokeWidth="1.6"
+            strokeWidth="1.8"
             strokeLinecap="round"
-            strokeLinejoin="round"
           />
         </svg>
       </Button>
