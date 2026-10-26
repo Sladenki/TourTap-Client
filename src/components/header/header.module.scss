@@ -12,12 +12,21 @@
 }
 
 .logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
   color: inherit;
   font-size: var(--text-logo-size);
   font-weight: var(--font-weight-extrabold);
   line-height: 1.37;
   letter-spacing: 0;
   text-decoration: none;
+}
+
+.mark {
+  width: 32px;
+  height: 32px;
+  color: var(--accent-primary);
 }
 
 .links {

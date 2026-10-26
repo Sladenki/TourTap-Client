@@ -1,69 +1,507 @@
-import Image from "next/image";
+import { Button } from "@/components/button/button";
+import { Card } from "@/components/card/card";
+import { Header } from "@/components/header/header";
+import styles from "./page.module.scss";
+
+const assets = {
+  composition: "/assets/Объёмная композиция.png",
+  star: "/assets/Объёмная звезда.png",
+  excursion: "/assets/Фото экскурсии.png",
+  routes: "/assets/Ваши маршруты.png",
+};
+
+const marquee = ["МЕНЬШЕ РУТИНЫ", "БОЛЬШЕ МАРШРУТОВ", "ИЗ ПОСТА В БИЛЕТ"];
+
+const pageBits = [
+  "Маршрут с вашим характером",
+  "Понятный следующий шаг для гостя",
+  "Одна ссылка для вашего Telegram",
+];
+
+const benefits = [
+  {
+    title: "Не начинайте с чистого листа",
+    text: "У вас уже есть пост. TourTap превращает знакомый формат в страницу, на которой можно забронировать экскурсию.",
+  },
+  {
+    title: "Не собирайте сайт по кусочкам",
+    text: "Описание, оферта и оплата оказываются рядом. Вместо отдельной сборки страницы — пересылка сообщения.",
+  },
+  {
+    title: "Оставайтесь в своём ритме",
+    text: "Рассказывайте о городе в Telegram, делитесь ссылкой на экскурсию и уделяйте больше внимания самой прогулке.",
+  },
+];
+
+const paymentPoints = [
+  {
+    title: "Оферта на странице",
+    text: "Условия экскурсии рядом с описанием — до бронирования и оплаты.",
+  },
+  {
+    title: "Оплата по СБП",
+    text: "Гость переходит к онлайн-оплате со страницы экскурсии.",
+  },
+  {
+    title: "Чек НПД",
+    text: "Чек для экскурсии самозанятого — часть сценария TourTap.",
+  },
+];
+
+const faqs = [
+  {
+    question: "Что нужно переслать боту?",
+    answer:
+      "Перешлите TourTap пост из Telegram с описанием вашей экскурсии. Бот соберёт готовую страницу с офертой, оплатой по СБП и чеком НПД за 20 секунд.",
+  },
+  { question: "Нужен ли отдельный сайт?" },
+  { question: "Что увидит гость по ссылке?" },
+  { question: "Как устроена онлайн-оплата?" },
+  { question: "Для кого предназначен чек НПД?" },
+];
+
+const footerLinks = [
+  { href: "#how", label: "Как это работает" },
+  { href: "#guides", label: "Для гидов" },
+  { href: "#faq", label: "Вопросы" },
+  { href: "#start", label: "Открыть бота" },
+];
+
+function Arrow() {
+  return (
+    <svg className={styles.arrowIcon} viewBox="0 0 16 16" aria-hidden="true">
+      <path
+        d="M4 12 12 4M7 4h5v5"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+function Plane() {
+  return (
+    <svg className={styles.plane} viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M4 12.2 20 4.5 13.2 20 11.4 14.2 4 12.2Z" fill="currentColor" />
+    </svg>
+  );
+}
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
+    <main className={styles.page}>
+      <section className={styles.hero}>
+        <Header actionHref="#start" />
+        <div className={styles.cover}>
+          <div className={styles.coverCopy}>
+            <p className={styles.kicker}>
+              <span className={styles.marker} />
+              Для гидов, которые ведут за собой
+            </p>
+            <h1 className={styles.heroTitle}>
+              ВАШ ПОСТ —
+              <br />
+              УЖЕ СТРАНИЦА
+              <br />
+              ЭКСКУРСИИ.
+            </h1>
+            <p className={styles.lead}>
+              Перешлите пост из Telegram боту. TourTap соберет страницу с офертой, оплатой
+              по СБП и чеком НПД за 20 секунд.
+            </p>
+            <Button href="#start">
+              Создать экскурсию
+              <Arrow />
+            </Button>
+            <p className={styles.badgeLine}>
+              <span>БЕЗ КОДА</span>
+              Ваш контент. Готовый маршрут к брони.
+            </p>
+          </div>
+          <img
+            className={styles.composition}
+            src={assets.composition}
+            alt="Телефон с постом TourTap, билет и пружина"
+            width={604}
+            height={609}
+          />
+          <div className={styles.coverFoot}>
+            <p>ПОСТ → СТРАНИЦА → БРОНИРОВАНИЕ</p>
+            <p>ЛИСТАЙТЕ ДАЛЬШЕ ↓</p>
+          </div>
+        </div>
+        <div className={styles.marquee}>
+          {marquee.map((item) => (
+            <span key={item}>
+              {item}
+              <span className={styles.asterisk}>*</span>
+            </span>
+          ))}
+        </div>
+      </section>
+
+      <section className={styles.section} id="how">
+        <p className={styles.kicker}>
+          <span className={styles.marker} />
+          01 / Как это работает
+        </p>
+        <h2 className={styles.h1}>
+          МЕНЬШЕ ДЕЙСТВИЙ.
+          <br />
+          БЛИЖЕ К ГОСТЯМ.
+        </h2>
+        <div className={styles.bento}>
+          <div className={styles.stack}>
+            <Card variant="subtle" padding="md" className={styles.postCard}>
+              <div className={styles.cardHead}>
+                <p className={styles.step}>01 / ПОСТ</p>
+                <Plane />
+              </div>
+              <h3 className={styles.h3}>
+                Хороший пост —
+                <br />
+                уже начало.
+              </h3>
+              <p className={styles.copy}>
+                Фото, маршрут, детали — перешлите свой пост боту TourTap в Telegram.
+              </p>
+            </Card>
+            <article className={styles.forwardCard}>
+              <p className={styles.whisper}>Переслать сообщение</p>
+              <div className={styles.botRow}>
+                <span className={styles.avatar}>
+                  <Plane />
+                </span>
+                <span>
+                  <strong>TourTap</strong>
+                  <small>бот для ваших экскурсий</small>
+                </span>
+              </div>
+              <Button variant="forward" href="#start">
+                Переслать пост
+                <Arrow />
+              </Button>
+            </article>
+          </div>
+          <div className={styles.stack}>
+            <Card variant="accent" padding="md" className={styles.readyCard}>
+              <div>
+                <p className={styles.step}>02 / СТРАНИЦА</p>
+                <h3 className={styles.h3}>
+                  20 секунд.
+                  <br />
+                  Всё собирается.
+                </h3>
+                <p className={styles.copy}>
+                  TourTap превращает пост в страницу экскурсии с бронированием.
+                </p>
+              </div>
+              <aside className={styles.ready}>
+                <p>
+                  <span className={styles.dot} />
+                  СТРАНИЦА ГОТОВА
+                </p>
+                <ul>
+                  <li>Описание и фото</li>
+                  <li>Оферта</li>
+                  <li>Онлайн-оплата</li>
+                </ul>
+              </aside>
+            </Card>
+            <Card variant="mint" padding="md">
+              <p className={styles.step}>03 / БРОНИРОВАНИЕ</p>
+              <h3 className={styles.h3}>
+                Делитесь ссылкой.
+                <br />
+                Собирайте группу.
+              </h3>
+              <div className={styles.notice}>
+                <span className={styles.noticeIcon} aria-hidden="true" />
+                <span>
+                  <strong>Новое бронирование</strong>
+                  <small>2 гостя · Петербург с высоты крыш</small>
+                </span>
+              </div>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      <section className={styles.section} id="result">
+        <div className={styles.split}>
+          <div className={styles.explain}>
+            <p className={styles.kicker}>
+              <span className={styles.marker} />
+              02 / Вот что увидит гость
+            </p>
+            <h2 className={styles.h2}>
+              НЕ ПРОСТО
+              <br />
+              ССЫЛКА.
+              <br />
+              ПРИГЛАШЕНИЕ
+              <br />
+              В ГОРОД.
+            </h2>
+            <p className={styles.muted}>
+              Фото, описание, условия и бронирование — на одной странице. Гостю проще
+              выбрать прогулку. Вам — поделиться ею.
+            </p>
+            <ul className={styles.bits}>
+              {pageBits.map((bit) => (
+                <li key={bit}>
+                  <Arrow />
+                  {bit}
+                </li>
+              ))}
+            </ul>
+            <p className={styles.note}>Иллюстративный пример экскурсии.</p>
+          </div>
+          <figure className={styles.showcase}>
+            <Card variant="elevated" padding="none" className={styles.browser}>
+              <div className={styles.chrome}>
+                <span className={styles.dots} aria-hidden="true">
+                  <i />
+                  <i />
+                  <i />
+                </span>
+                <span className={styles.url}>tourtap / ваша-экскурсия</span>
+                <span className={styles.share} aria-hidden="true" />
+              </div>
+              <img
+                src={assets.excursion}
+                alt="Город с реки на закате"
+                width={720}
+                height={255}
+              />
+              <div className={styles.excursionBody}>
+                <h3>Янтарный закат янтарного края</h3>
+                <p className={styles.meta}>
+                  <span>2 часа</span>
+                  <span>Пешком</span>
+                  <span>До 6 гостей</span>
+                </p>
+                <p className={styles.muted}>
+                  Увидим знакомый город с неожиданного ракурса: рыбная деревня, богатая
+                  история и янтарный закат, который заставит влюбиться в этот город.
+                </p>
+                <div className={styles.select}>
+                  <strong>Суббота · 18:00</strong>
+                  <small>Выберите количество гостей</small>
+                  <span className={styles.chevron} aria-hidden="true" />
+                </div>
+                <Button href="#start">
+                  Забронировать
+                  <Arrow />
+                </Button>
+                <p className={styles.fine}>Условия экскурсии и оферта — на странице</p>
+              </div>
+            </Card>
+            <figcaption className={styles.caption}>
+              ВАШ ПОСТ ВНУТРИ. TOURTAP — ЗА КУЛИСАМИ.
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section className={styles.section} id="guides">
+        <p className={styles.kicker}>
+          <span className={styles.marker} />
+          03 / Вы занимаетесь главным
+        </p>
+        <div className={styles.editorial}>
+          <div>
+            <h2 className={styles.h1}>
+              ВЫ — ГИД.
+              <br />
+              НЕ АДМИН.
+            </h2>
+            <img
+              className={styles.star}
+              src={assets.star}
+              alt="Объёмная оранжевая звезда"
+              width={370}
+              height={260}
+            />
+            <p className={styles.manifestoLine}>
+              Больше внимания маршруту.
+              <br />
+              Меньше — тому, что вокруг него.
+            </p>
+          </div>
+          <ol className={styles.benefitList}>
+            {benefits.map((item, index) => (
+              <li key={item.title}>
+                <span>0{index + 1}</span>
+                <div>
+                  <h3>{item.title}</h3>
+                  <p>{item.text}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      <section className={styles.section} id="payment">
+        <p className={styles.kicker}>
+          <span className={styles.marker} />
+          04 / От брони до чека
+        </p>
+        <div className={styles.payGrid}>
+          <Card variant="accent" padding="lg" className={styles.payCard}>
+            <h2 className={styles.h1}>
+              ОПЛАТА.
+              <br />
+              НЕ ПЕРЕПИСКА.
+            </h2>
+            <p>
+              Оферта, онлайн-оплата и чек —
+              <br />
+              в одном сценарии бронирования.
+            </p>
+            <article className={styles.receipt}>
+              <header>
+                ЧЕК НПД
+                <span />
+              </header>
+              <p>Экскурсия</p>
+              <strong>
+                Янтарный закат
+                <br />
+                янтарного края
+              </strong>
+              <span className={styles.example}>ПРИМЕР ДОКУМЕНТА</span>
+            </article>
+          </Card>
+          <Card variant="subtle" padding="lg" className={styles.guestCard}>
+            <h2 className={styles.h3}>
+              ПОНЯТНО ГОСТЮ.
+              <br />
+              УДОБНО ВАМ.
+            </h2>
+            <ul>
+              {paymentPoints.map((point) => (
+                <li key={point.title}>
+                  <span className={styles.pointIcon} aria-hidden="true" />
+                  <span>
+                    <strong>{point.title}</strong>
+                    {point.text}
+                  </span>
+                </li>
+              ))}
+            </ul>
+            <p className={styles.disclaimer}>
+              Перед публикацией проверьте описание, условия и свои данные. Сценарий с чеком
+              НПД предназначен для самозанятых.
+            </p>
+          </Card>
+        </div>
+      </section>
+
+      <section className={styles.routes} id="routes">
+        <h2 className={styles.srOnly}>Ваш город. Ваш голос.</h2>
+        <img
+          src={assets.routes}
+          alt="05 / Ваши маршруты. Ваш город. Ваш голос. TourTap берёт на себя страницу. Содержание и впечатления — за вами."
+          width={1440}
+          height={610}
         />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+      </section>
+
+      <section className={styles.section} id="faq">
+        <div className={styles.faqGrid}>
+          <div>
+            <p className={styles.kicker}>
+              <span className={styles.marker} />
+              06 / Вопросы и ответы
+            </p>
+            <h2 className={styles.h1}>
+              ЕСТЬ
+              <br />
+              ВОПРОСЫ?
+            </h2>
+            <p className={styles.muted}>
+              Начните с поста, который уже рассказывает о вашей экскурсии.
+            </p>
+          </div>
+          <div className={styles.accordion}>
+            {faqs.map((item, index) => (
+              <details key={item.question} className={styles.item} open={index === 0 || undefined}>
+                <summary>
+                  {item.question}
+                  <span className={styles.sign} aria-hidden="true" />
+                </summary>
+                {item.answer ? <p>{item.answer}</p> : null}
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className={styles.cta} id="start">
+        <p className={styles.kicker}>07 / ВАШ СЛЕДУЮЩИЙ ШАГ</p>
+        <div className={styles.ctaBody}>
+          <h2>
+            СЛЕДУЮЩАЯ
+            <br />
+            ОСТАНОВКА —
+            <br />
+            ВАША ЭКСКУРСИЯ.
+          </h2>
+          <div className={styles.ctaRow}>
+            <Button variant="inverse" href="#start">
+              Создать экскурсию
+              <Arrow />
+            </Button>
+            <p>
+              У вас уже есть всё для старта.
+              <br />
+              Осталось переслать пост.
+            </p>
+          </div>
+        </div>
+        <img
+          className={styles.ctaStar}
+          src={assets.star}
+          alt=""
+          width={370}
+          height={260}
+        />
+      </section>
+
+      <footer className={styles.footer}>
+        <div className={styles.footerTop}>
+          <p>
+            Из вашего поста —
+            <br />
+            в новое приключение.
+          </p>
+          <nav aria-label="Подвал">
+            {footerLinks.map((link) => (
+              <a key={link.label} href={link.href}>
+                {link.label}
+              </a>
+            ))}
+          </nav>
+        </div>
+        <div className={styles.wordmark}>
+          <p>TourTap</p>
+          <a href="#start" aria-label="Создать экскурсию">
+            <Arrow />
+          </a>
+        </div>
+        <div className={styles.legal}>
+          <p>© 2026 TourTap</p>
+          <p>
+            <a href="#privacy">Политика конфиденциальности</a>
+            <a href="#terms">Условия использования</a>
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+      </footer>
+    </main>
   );
 }
