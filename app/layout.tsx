@@ -1,15 +1,33 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+const manropeCyrillic = localFont({
+  src: "./fonts/manrope-cyrillic.woff2",
+  weight: "200 800",
+  variable: "--font-manrope-cyrillic",
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+const manropeLatin = localFont({
+  src: "./fonts/manrope-latin.woff2",
+  weight: "200 800",
+  variable: "--font-manrope-latin",
+  display: "swap",
+});
+
+const unboundedCyrillic = localFont({
+  src: "./fonts/unbounded-cyrillic.woff2",
+  weight: "200 900",
+  variable: "--font-unbounded-cyrillic",
+  display: "swap",
+});
+
+const unboundedLatin = localFont({
+  src: "./fonts/unbounded-latin.woff2",
+  weight: "200 900",
+  variable: "--font-unbounded-latin",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -21,7 +39,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${manropeCyrillic.variable} ${manropeLatin.variable} ${unboundedCyrillic.variable} ${unboundedLatin.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">{children}</body>
     </html>

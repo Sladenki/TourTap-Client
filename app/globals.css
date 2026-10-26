@@ -1,26 +1,197 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Color — light. Illustration colors stay the same in both themes. */
+  --background-canvas: #faf7f2;
+  --background-subtle: #eeeae3;
+  --surface-paper: #faf7f2;
+  --surface-white: #ffffff;
+  --surface-elevated: #ffffff;
+  --text-primary: #20201e;
+  --text-secondary: #6f6d67;
+  --text-on-paper-secondary: #6f6d67;
+  --foreground-ink: #20201e;
+  --accent-primary: #ff6a2b;
+  --accent-lime: #daff7c;
+  --accent-mint: #bff4cf;
+  --border-default: #d8d4cc;
+  --border-orbit: #d6d0c6;
+  --border-on-paper: #d8d4cc;
+  --illustration-phone-depth: #57564f;
+  --illustration-phone-edge: #7a786d;
+  --illustration-phone-stroke: #5b5a53;
+  --illustration-telegram-background: #e7e8d9;
+  --illustration-telegram-status: #747767;
+  --illustration-forward-source: #79805d;
+  --illustration-perforation: #d5d0c5;
+  --overlay-strong: rgb(18 18 18 / 0.902);
+  --overlay-soft: rgb(18 18 18 / 0.188);
+
+  --background: var(--background-canvas);
+  --foreground: var(--text-primary);
+
+  --font-manrope: var(--font-manrope-cyrillic), var(--font-manrope-latin), sans-serif;
+  --font-unbounded: var(--font-unbounded-cyrillic), var(--font-unbounded-latin), sans-serif;
+  --font-sans: var(--font-manrope);
+  --font-display: var(--font-unbounded);
+  --font-weight-regular: 400;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+  --font-weight-black: 900;
+
+  --text-hero-size-desktop: 91px;
+  --text-hero-leading-desktop: 1.02;
+  --text-hero-size-mobile: 37px;
+  --text-hero-leading-mobile: 1.01;
+  --text-manifesto-size-desktop: 80px;
+  --text-manifesto-leading: 1.03;
+  --text-manifesto-size-mobile: 39px;
+  --text-cta-size-desktop: 76px;
+  --text-cta-leading: 1.05;
+  --text-cta-size-mobile: 32px;
+  --text-h1-size-desktop: 60px;
+  --text-h1-leading: 1.06;
+  --text-h1-size-mobile: 30px;
+  --text-h2-size-desktop: 48px;
+  --text-h2-leading: 1.06;
+  --text-h2-size-mobile: 30px;
+  --text-h3-size-desktop: 36px;
+  --text-h3-leading: 1.1;
+  --text-h3-size-mobile: 24px;
+  --text-h4-size-desktop: 31px;
+  --text-h4-leading: 1.1;
+  --text-h4-size-mobile: 24px;
+  --text-h5-size: 25px;
+  --text-h6-size: 18px;
+  --text-body-lg-size: 20px;
+  --text-body-lg-leading: 1.55;
+  --text-body-size: 18px;
+  --text-body-leading: 1.6;
+  --text-body-md-size: 16px;
+  --text-body-md-leading: 1.6;
+  --text-body-sm-size: 15px;
+  --text-body-sm-leading: 1.5;
+  --text-button-size-desktop: 20px;
+  --text-button-size-mobile: 16px;
+  --text-label-size: 11px;
+  --text-nav-size: 14px;
+  --text-logo-size: 27px;
+  --text-wordmark-size-desktop: 246px;
+  --text-wordmark-leading: 0.9;
+  --text-wordmark-size-mobile: 83px;
+
+  /* Radii preserved in the UI kit. */
+  --radius-10: 10px;
+  --radius-12: 12px;
+  --radius-14: 14px;
+  --radius-16: 16px;
+  --radius-18: 18px;
+  --radius-20: 20px;
+  --radius-24: 24px;
+  --radius-25: 25px;
+  --radius-28: 28px;
+  --radius-32: 32px;
+  --radius-36: 36px;
+  --radius-99: 99px;
+  --radius-pill: 999px;
+  --radius-field: var(--radius-16);
+  --radius-faq: var(--radius-20);
+  --radius-excursion: var(--radius-28);
+  --radius-card: var(--radius-32);
+  --radius-control: var(--radius-99);
+
+  /* Layout and components measured on the dev frames. */
+  --page-width-desktop: 1440px;
+  --page-width-mobile: 390px;
+  --content-width-desktop: 1344px;
+  --content-width-mobile: 350px;
+  --gutter-desktop: 48px;
+  --gutter-mobile: 20px;
+  --section-padding-y-desktop: 96px;
+  --section-padding-y-mobile: 64px;
+  --header-height-desktop: 104px;
+  --header-height-mobile: 80px;
+  --header-padding-x-desktop: 48px;
+  --header-padding-x-mobile: 20px;
+  --card-padding: 32px;
+  --card-padding-lg: 40px;
+  --card-padding-mobile: 24px;
+  --button-primary-height-desktop: 76px;
+  --button-primary-height-mobile: 64px;
+  --button-primary-padding-x: 28px;
+  --button-outline-height: 40px;
+  --button-outline-padding-y: 12px;
+  --button-outline-padding-x: 22px;
+  --button-booking-height: 54px;
+  --button-forward-height: 46px;
+  --button-forward-padding: 14px;
+  --field-height: 70px;
+  --field-padding: 16px;
+  --badge-height: 29px;
+  --badge-padding-y: 7px;
+  --badge-padding-x: 12px;
+  --faq-padding: 26px;
+  --faq-gap: 18px;
+  --icon-size: 24px;
+  --symbol-size: 32px;
+  --logo-width: 147px;
+  --logo-height: 37px;
+  --border-width: 1px;
+  --border-width-hover: 2px;
+  --opacity-disabled: 0.4;
+  --shadow-phone: 12px 22px 28px #00000035;
+  --shadow-ticket: 4px 20px 32px #00000035;
+  --shadow-receipt: 10px 15px 26px #6c2a102e;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background-canvas: #121212;
+    --background-subtle: #212120;
+    --surface-elevated: #2a2a28;
+    --text-primary: #faf7f2;
+    --text-secondary: #b0aea7;
+    --border-default: #3b3b37;
+    --border-orbit: #45453e;
+  }
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-canvas: var(--background-canvas);
+  --color-subtle: var(--background-subtle);
+  --color-paper: var(--surface-paper);
+  --color-elevated: var(--surface-elevated);
+  --color-ink: var(--foreground-ink);
+  --color-secondary: var(--text-secondary);
+  --color-on-paper-secondary: var(--text-on-paper-secondary);
+  --color-accent: var(--accent-primary);
+  --color-accent-lime: var(--accent-lime);
+  --color-accent-mint: var(--accent-mint);
+  --color-line: var(--border-default);
+  --color-orbit: var(--border-orbit);
+  --color-line-paper: var(--border-on-paper);
+  --color-phone-depth: var(--illustration-phone-depth);
+  --color-phone-edge: var(--illustration-phone-edge);
+  --color-phone-stroke: var(--illustration-phone-stroke);
+  --color-telegram-background: var(--illustration-telegram-background);
+  --color-telegram-status: var(--illustration-telegram-status);
+  --color-forward-source: var(--illustration-forward-source);
+  --color-perforation: var(--illustration-perforation);
+  --font-sans: var(--font-manrope);
+  --font-display: var(--font-unbounded);
+  --radius-field: var(--radius-16);
+  --radius-faq: var(--radius-20);
+  --radius-excursion: var(--radius-28);
+  --radius-card: var(--radius-32);
+  --radius-control: var(--radius-99);
+  --radius-pill: var(--radius-pill);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--background-canvas);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
 }
