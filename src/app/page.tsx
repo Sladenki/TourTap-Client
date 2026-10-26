@@ -82,17 +82,25 @@ function Arrow() {
   );
 }
 
-function Plane() {
+function OutlinePlane() {
   return (
-    <svg className={styles.plane} viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M4 12.2 20 4.5 13.2 20 11.4 14.2 4 12.2Z" fill="currentColor" />
+    <svg className={styles.plane} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path
+        d="M3.5 12 20.5 4.2 13.2 20.2 11.4 13.6 3.5 12Z"
+        stroke="currentColor"
+        strokeWidth="1.4"
+        strokeLinejoin="round"
+      />
+      <path d="M11.4 13.5 20.5 4.2" stroke="currentColor" strokeWidth="1.4" />
     </svg>
   );
 }
 
 export default function Home() {
   return (
-    <main className={styles.page}>
+    <div className={styles.shell}>
+      <main>
+      <div className={styles.page}>
       <section className={styles.hero}>
         <Header actionHref="#start" />
         <div className={styles.cover}>
@@ -109,8 +117,9 @@ export default function Home() {
               ЭКСКУРСИИ.
             </h1>
             <p className={styles.lead}>
-              Перешлите пост из Telegram боту. TourTap соберет страницу с офертой, оплатой
-              по СБП и чеком НПД за 20 секунд.
+              Перешлите пост из Telegram боту. TourTap соберет страницу
+              <br />
+              с офертой, оплатой по СБП и чеком НПД за 20 секунд.
             </p>
             <Button href="#start">
               Создать экскурсию
@@ -133,16 +142,19 @@ export default function Home() {
             <p>ЛИСТАЙТЕ ДАЛЬШЕ ↓</p>
           </div>
         </div>
-        <div className={styles.marquee}>
-          {marquee.map((item) => (
-            <span key={item}>
-              {item}
-              <span className={styles.asterisk}>*</span>
-            </span>
-          ))}
-        </div>
       </section>
+      </div>
 
+      <div className={styles.marquee}>
+        {marquee.map((item) => (
+          <span className={styles.marqueeItem} key={item}>
+            {item}
+            <span className={styles.asterisk}>*</span>
+          </span>
+        ))}
+      </div>
+
+      <div className={styles.page}>
       <section className={styles.section} id="how">
         <p className={styles.kicker}>
           <span className={styles.marker} />
@@ -158,7 +170,7 @@ export default function Home() {
             <Card variant="subtle" padding="md" className={styles.postCard}>
               <div className={styles.cardHead}>
                 <p className={styles.step}>01 / ПОСТ</p>
-                <Plane />
+                <OutlinePlane />
               </div>
               <h3 className={styles.h3}>
                 Хороший пост —
@@ -168,23 +180,23 @@ export default function Home() {
               <p className={styles.copy}>
                 Фото, маршрут, детали — перешлите свой пост боту TourTap в Telegram.
               </p>
+              <article className={styles.forwardCard}>
+                <p className={styles.whisper}>Переслать сообщение</p>
+                <div className={styles.botRow}>
+                  <span className={styles.avatar}>
+                    <Arrow />
+                  </span>
+                  <span>
+                    <strong>TourTap</strong>
+                    <small>бот для ваших экскурсий</small>
+                  </span>
+                </div>
+                <Button variant="forward" href="#start">
+                  Переслать пост
+                  <Arrow />
+                </Button>
+              </article>
             </Card>
-            <article className={styles.forwardCard}>
-              <p className={styles.whisper}>Переслать сообщение</p>
-              <div className={styles.botRow}>
-                <span className={styles.avatar}>
-                  <Plane />
-                </span>
-                <span>
-                  <strong>TourTap</strong>
-                  <small>бот для ваших экскурсий</small>
-                </span>
-              </div>
-              <Button variant="forward" href="#start">
-                Переслать пост
-                <Arrow />
-              </Button>
-            </article>
           </div>
           <div className={styles.stack}>
             <Card variant="accent" padding="md" className={styles.readyCard}>
@@ -200,10 +212,7 @@ export default function Home() {
                 </p>
               </div>
               <aside className={styles.ready}>
-                <p>
-                  <span className={styles.dot} />
-                  СТРАНИЦА ГОТОВА
-                </p>
+                <p className={styles.readyLabel}>СТРАНИЦА ГОТОВА</p>
                 <ul>
                   <li>Описание и фото</li>
                   <li>Оферта</li>
@@ -211,15 +220,29 @@ export default function Home() {
                 </ul>
               </aside>
             </Card>
-            <Card variant="mint" padding="md">
-              <p className={styles.step}>03 / БРОНИРОВАНИЕ</p>
-              <h3 className={styles.h3}>
-                Делитесь ссылкой.
-                <br />
-                Собирайте группу.
-              </h3>
+            <Card variant="mint" padding="md" className={styles.bookingCard}>
+              <div>
+                <p className={styles.step}>03 / БРОНИРОВАНИЕ</p>
+                <h3 className={styles.h3}>
+                  Делитесь ссылкой.
+                  <br />
+                  Собирайте группу.
+                </h3>
+              </div>
               <div className={styles.notice}>
-                <span className={styles.noticeIcon} aria-hidden="true" />
+                <svg className={styles.noticeIcon} viewBox="0 0 24 24" aria-hidden="true">
+                  <rect
+                    x="4"
+                    y="5"
+                    width="16"
+                    height="14"
+                    rx="2"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.6"
+                  />
+                  <path d="M8 9h8M8 13h5" fill="none" stroke="currentColor" strokeWidth="1.6" />
+                </svg>
                 <span>
                   <strong>Новое бронирование</strong>
                   <small>2 гостя · Петербург с высоты крыш</small>
@@ -502,6 +525,8 @@ export default function Home() {
           </p>
         </div>
       </footer>
-    </main>
+      </div>
+      </main>
+    </div>
   );
 }
