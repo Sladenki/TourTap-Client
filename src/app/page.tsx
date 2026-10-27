@@ -37,17 +37,17 @@ const paymentPoints = [
   {
     title: "Оферта на странице",
     text: "Условия экскурсии рядом с описанием — до бронирования и оплаты.",
-    icon: "/assets/icons/file-text.svg",
+    icon: "/icons/file-text.svg",
   },
   {
     title: "Оплата по СБП",
     text: "Гость переходит к онлайн-оплате со страницы экскурсии.",
-    icon: "/assets/icons/scan-line.svg",
+    icon: "/icons/scan-line.svg",
   },
   {
     title: "Чек НПД",
     text: "Чек для экскурсии самозанятого — часть сценария TourTap.",
-    icon: "/assets/icons/receipt-text.svg",
+    icon: "/icons/receipt-text.svg",
   },
 ];
 
@@ -101,7 +101,7 @@ function Arrow() {
 
 function OutlinePlane() {
   return (
-    <img className={styles.plane} src="/assets/icons/send.svg" alt="" width={24} height={24} />
+    <img className={styles.plane} src="/icons/send.svg" alt="" width={24} height={24} />
   );
 }
 
@@ -170,7 +170,7 @@ export default function Home() {
           <img
             key={`${item}-mark`}
             className={styles.asterisk}
-            src="/assets/icons/asterisk.svg"
+            src="/icons/asterisk.svg"
             alt=""
             width={24}
             height={24}
@@ -240,7 +240,7 @@ export default function Home() {
                 <ul>
                   {["Описание и фото", "Оферта", "Онлайн-оплата"].map((item) => (
                     <li key={item}>
-                      <img src="/assets/icons/circle-check.svg" alt="" width={17} height={17} />
+                      <img src="/icons/circle-check.svg" alt="" width={17} height={17} />
                       {item}
                     </li>
                   ))}
@@ -259,7 +259,7 @@ export default function Home() {
               <div className={styles.notice}>
                 <img
                   className={styles.noticeIcon}
-                  src="/assets/icons/ticket-check.svg"
+                  src="/icons/ticket-check.svg"
                   alt=""
                   width={28}
                   height={28}
@@ -317,7 +317,7 @@ export default function Home() {
                   <i />
                 </span>
                 <span className={styles.url}>tourtap / ваша-экскурсия</span>
-                <img className={styles.share} src="/assets/icons/lock.svg" alt="" width={12} height={12} />
+                <img className={styles.share} src="/icons/lock.svg" alt="" width={12} height={12} />
               </div>
               <div className={styles.photo}>
                 <img
@@ -420,7 +420,7 @@ export default function Home() {
             <article className={styles.receipt}>
               <header>
                 ЧЕК НПД
-                <img src="/assets/icons/check-check.svg" alt="" width={24} height={24} />
+                <img src="/icons/check-check.svg" alt="" width={24} height={24} />
               </header>
               <span className={styles.rule} />
               <p>
@@ -473,7 +473,7 @@ export default function Home() {
           <p>05 / ВАШИ МАРШРУТЫ</p>
           <img
             className={styles.routesArrow}
-            src="/assets/icons/arrow-up-right-paper.svg"
+            src="/icons/arrow-up-right-paper.svg"
             alt=""
             width={24}
             height={24}
