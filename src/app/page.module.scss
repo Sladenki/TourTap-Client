@@ -761,17 +761,33 @@
   background: linear-gradient(currentColor, currentColor) center / 14px 1.5px no-repeat;
 }
 
+.result,
+.routes {
+  width: 100%;
+}
+
+.result {
+  background: var(--background-subtle);
+}
+
 .cta {
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 28px;
-  padding: 48px var(--gutter-mobile) 36px;
+  width: 100%;
   background: var(--accent-primary);
   color: var(--foreground-ink);
 
   .kicker {
     color: var(--foreground-ink);
+  }
+
+  .page {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    padding: 48px var(--gutter-mobile) 36px;
   }
 }
 
@@ -1015,10 +1031,6 @@
     line-height: 1.1;
   }
 
-  :global(#result) {
-    background: var(--background-subtle);
-  }
-
   .split {
     display: grid;
     grid-template-columns: 560px minmax(0, 1fr);
@@ -1150,7 +1162,7 @@
     gap: 80px;
   }
 
-  .cta {
+  .cta .page {
     min-height: 520px;
     padding: 64px var(--gutter-desktop) 72px;
   }

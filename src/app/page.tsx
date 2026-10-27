@@ -247,7 +247,11 @@ export default function Home() {
         </div>
       </section>
 
-      <section className={styles.section} id="result">
+      </div>
+
+      <section className={styles.result} id="result">
+      <div className={styles.page}>
+      <div className={styles.section}>
         <div className={styles.split}>
           <div className={styles.explain}>
             <p className={styles.kicker}>
@@ -322,8 +326,11 @@ export default function Home() {
             </figcaption>
           </figure>
         </div>
+      </div>
+      </div>
       </section>
 
+      <div className={styles.page}>
       <section className={styles.section} id="guides">
         <p className={styles.kicker}>
           <span className={styles.marker} />
@@ -419,6 +426,8 @@ export default function Home() {
         </div>
       </section>
 
+      </div>
+
       <section className={styles.routes} id="routes">
         <h2 className={styles.srOnly}>Ваш город. Ваш голос.</h2>
         <img
@@ -429,6 +438,7 @@ export default function Home() {
         />
       </section>
 
+      <div className={styles.page}>
       <section className={styles.section} id="faq">
         <div className={styles.faqGrid}>
           <div>
@@ -459,7 +469,10 @@ export default function Home() {
         </div>
       </section>
 
+      </div>
+
       <section className={styles.cta} id="start">
+      <div className={styles.page}>
         <p className={styles.kicker}>07 / ВАШ СЛЕДУЮЩИЙ ШАГ</p>
         <div className={styles.ctaBody}>
           <h2>
@@ -488,8 +501,10 @@ export default function Home() {
           width={370}
           height={260}
         />
+      </div>
       </section>
 
+      <div className={styles.page}>
       <footer className={styles.footer}>
         <div className={styles.footerTop}>
           <p>
