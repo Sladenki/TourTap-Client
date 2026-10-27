@@ -645,62 +645,138 @@
   min-width: 0;
 }
 
-.payCard p {
-  max-width: 28ch;
+.payCard > p {
+  max-width: none;
+  font-size: var(--text-body-md-size);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--text-body-md-leading);
 }
 
 .receipt {
-  width: min(100%, 280px);
-  margin-top: 12px;
-  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  width: min(100%, 330px);
+  padding: 28px;
+  border-radius: var(--radius-18);
+  background: var(--surface-paper);
   transform: rotate(-7deg);
   box-shadow: var(--shadow-receipt);
 
   header {
     display: flex;
+    align-items: flex-start;
     justify-content: space-between;
-    font-weight: var(--font-weight-extrabold);
+    width: 100%;
+    font-family: var(--font-display);
+    font-size: 27px;
+    font-weight: var(--font-weight-bold);
+    line-height: normal;
+  }
+
+  img {
+    flex: none;
+    width: 24px;
+    height: 24px;
   }
 
   p {
     margin: 0;
-    color: var(--text-secondary);
-    font-size: 13px;
+    color: var(--foreground-ink);
+    font-size: 14px;
+    font-weight: var(--font-weight-regular);
+    line-height: 1.6;
   }
+}
+
+.rule {
+  width: 100%;
+  height: 1px;
+  background: var(--border-default);
 }
 
 .example {
   align-self: flex-start;
-  padding: 6px 10px;
+  padding: 7px 12px;
   border-radius: var(--radius-pill);
-  background: var(--accent-lime);
+  background: var(--accent-mint);
+  color: var(--foreground-ink);
   font-size: 11px;
   font-weight: var(--font-weight-bold);
+  line-height: normal;
+}
+
+article.guestCard {
+  gap: 32px;
+}
+
+.guestCard h2 {
+  font-size: 31px;
+  font-weight: var(--font-weight-bold);
+  line-height: 1.15;
 }
 
 .guestCard ul {
   display: flex;
   flex-direction: column;
-  gap: 22px;
-  margin: 8px 0 0;
+  gap: 32px;
+  width: 100%;
+  margin: 0;
   padding: 0;
   list-style: none;
 
   li {
     display: flex;
-    gap: 14px;
+    align-items: flex-start;
+    gap: 16px;
+    padding-top: 18px;
+    border-top: var(--border-width) solid var(--border-default);
+  }
+
+  li > span:last-child {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 0;
   }
 
   strong {
     display: block;
-    margin-bottom: 4px;
+    margin: 0;
     font-size: 18px;
+    font-weight: var(--font-weight-extrabold);
+    line-height: normal;
+  }
+
+  li span span {
+    color: var(--text-secondary);
+    font-size: 14px;
+    font-weight: var(--font-weight-regular);
+    line-height: 1.6;
   }
 }
 
-.disclaimer {
-  margin-top: auto;
-  font-size: 13px;
+.guestCard .pointIcon {
+  border-radius: var(--radius-12);
+  background: var(--surface-white);
+  box-shadow: none;
+
+  &::before {
+    content: none;
+  }
+
+  img {
+    width: 21px;
+    height: 21px;
+  }
+}
+
+.guestCard .disclaimer {
+  margin-top: 0;
+  font-size: 11px;
+  line-height: 1.6;
 }
 
 .faqGrid {
@@ -1156,6 +1232,19 @@
     align-items: stretch;
   }
 
+  .payCard h2 {
+    font-size: var(--text-h2-size-desktop);
+    line-height: var(--text-h2-leading);
+  }
+
+  .receipt {
+    width: max-content;
+  }
+
+  .receipt p {
+    white-space: nowrap;
+  }
+
   .faqGrid {
     display: grid;
     grid-template-columns: 420px 1fr;
@@ -1163,15 +1252,40 @@
   }
 
   .cta .page {
-    min-height: 520px;
-    padding: 64px var(--gutter-desktop) 72px;
+    min-height: 543px;
+    padding: 64px var(--gutter-desktop) 64px;
+  }
+
+  .ctaRow {
+    flex-direction: row;
+    align-items: center;
+    gap: 40px;
+  }
+
+  .ctaRow a {
+    justify-content: space-between;
+  }
+
+  .ctaRow .arrowIcon {
+    width: 24px;
+    height: 24px;
+  }
+
+  .ctaRow p {
+    width: 365px;
+    max-width: none;
+    font-size: var(--text-body-md-size);
+    line-height: var(--text-body-md-leading);
   }
 
   .ctaStar {
     position: absolute;
-    right: 72px;
-    bottom: 72px;
-    width: 230px;
+    top: 310px;
+    right: 40px;
+    bottom: auto;
+    width: 280px;
+    height: 280px;
+    object-fit: contain;
   }
 
   .footer {

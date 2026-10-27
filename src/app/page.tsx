@@ -37,14 +37,17 @@ const paymentPoints = [
   {
     title: "Оферта на странице",
     text: "Условия экскурсии рядом с описанием — до бронирования и оплаты.",
+    icon: "/assets/icons/file-text.svg",
   },
   {
     title: "Оплата по СБП",
     text: "Гость переходит к онлайн-оплате со страницы экскурсии.",
+    icon: "/assets/icons/scan-line.svg",
   },
   {
     title: "Чек НПД",
     text: "Чек для экскурсии самозанятого — часть сценария TourTap.",
+    icon: "/assets/icons/receipt-text.svg",
   },
 ];
 
@@ -390,14 +393,14 @@ export default function Home() {
             <article className={styles.receipt}>
               <header>
                 ЧЕК НПД
-                <span />
+                <img src="/assets/icons/check-check.svg" alt="" width={24} height={24} />
               </header>
-              <p>Экскурсия</p>
-              <strong>
-                Янтарный закат
+              <span className={styles.rule} />
+              <p>
+                Экскурсия
                 <br />
-                янтарного края
-              </strong>
+                Янтарный закат янтарного края
+              </p>
               <span className={styles.example}>ПРИМЕР ДОКУМЕНТА</span>
             </article>
           </Card>
@@ -410,10 +413,12 @@ export default function Home() {
             <ul>
               {paymentPoints.map((point) => (
                 <li key={point.title}>
-                  <span className={styles.pointIcon} aria-hidden="true" />
+                  <span className={styles.pointIcon}>
+                    <img src={point.icon} alt="" width={21} height={21} />
+                  </span>
                   <span>
                     <strong>{point.title}</strong>
-                    {point.text}
+                    <span>{point.text}</span>
                   </span>
                 </li>
               ))}
