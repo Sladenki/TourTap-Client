@@ -7,6 +7,7 @@ const manropeCyrillic = localFont({
   weight: "200 800",
   variable: "--font-manrope-cyrillic",
   display: "swap",
+  adjustFontFallback: false,
 });
 
 const manropeLatin = localFont({
@@ -14,6 +15,7 @@ const manropeLatin = localFont({
   weight: "200 800",
   variable: "--font-manrope-latin",
   display: "swap",
+  adjustFontFallback: false,
 });
 
 const unboundedCyrillic = localFont({
@@ -21,6 +23,7 @@ const unboundedCyrillic = localFont({
   weight: "200 900",
   variable: "--font-unbounded-cyrillic",
   display: "swap",
+  adjustFontFallback: false,
 });
 
 const unboundedLatin = localFont({
@@ -28,6 +31,7 @@ const unboundedLatin = localFont({
   weight: "200 900",
   variable: "--font-unbounded-latin",
   display: "swap",
+  adjustFontFallback: false,
 });
 
 export const metadata: Metadata = {

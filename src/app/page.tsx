@@ -70,6 +70,21 @@ const footerLinks = [
   { href: "#start", label: "Открыть бота" },
 ];
 
+function StepMark({ down = false }: { down?: boolean }) {
+  return (
+    <svg className={styles.stepMark} viewBox="0 0 12 12" aria-hidden="true">
+      <path
+        d={down ? "M6 2.2v6.2M3.4 6.1 6 8.8 8.6 6.1" : "M2.2 6h6.2M6.1 3.4 8.8 6 6.1 8.6"}
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.3"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
 function Arrow() {
   return (
     <svg className={styles.arrowIcon} viewBox="0 0 23 23" aria-hidden="true">
@@ -133,8 +148,17 @@ export default function Home() {
             height={609}
           />
           <div className={styles.coverFoot}>
-            <p>ПОСТ → СТРАНИЦА → БРОНИРОВАНИЕ</p>
-            <p>ЛИСТАЙТЕ ДАЛЬШЕ ↓</p>
+            <p>
+              ПОСТ
+              <StepMark />
+              СТРАНИЦА
+              <StepMark />
+              БРОНИРОВАНИЕ
+            </p>
+            <p>
+              ЛИСТАЙТЕ ДАЛЬШЕ
+              <StepMark down />
+            </p>
           </div>
         </div>
       </section>
@@ -295,12 +319,15 @@ export default function Home() {
                 <span className={styles.url}>tourtap / ваша-экскурсия</span>
                 <img className={styles.share} src="/assets/icons/lock.svg" alt="" width={12} height={12} />
               </div>
-              <img
-                src={assets.excursion}
-                alt="Город с реки на закате"
-                width={720}
-                height={255}
-              />
+              <div className={styles.photo}>
+                <img
+                  src={assets.excursion}
+                  alt="Город с реки на закате"
+                  width={720}
+                  height={255}
+                />
+                <span className={styles.photoTag}>ГОРОД С ДРУГОЙ СТОРОНЫ</span>
+              </div>
               <div className={styles.excursionBody}>
                 <h3>Янтарный закат янтарного края</h3>
                 <p className={styles.meta}>
@@ -340,7 +367,7 @@ export default function Home() {
           03 / Вы занимаетесь главным
         </p>
         <div className={styles.editorial}>
-          <div>
+          <div className={styles.manifesto}>
             <h2 className={styles.h1}>
               ВЫ — ГИД.
               <br />
@@ -362,11 +389,11 @@ export default function Home() {
           <ol className={styles.benefitList}>
             {benefits.map((item, index) => (
               <li key={item.title}>
-                <span>0{index + 1}</span>
-                <div>
+                <div className={styles.benefitTitle}>
+                  <span>0{index + 1}</span>
                   <h3>{item.title}</h3>
-                  <p>{item.text}</p>
                 </div>
+                <p>{item.text}</p>
               </li>
             ))}
           </ol>
@@ -434,13 +461,39 @@ export default function Home() {
       </div>
 
       <section className={styles.routes} id="routes">
-        <h2 className={styles.srOnly}>Ваш город. Ваш голос.</h2>
         <img
+          className={styles.routesPhoto}
           src={assets.routes}
-          alt="05 / Ваши маршруты. Ваш город. Ваш голос. TourTap берёт на себя страницу. Содержание и впечатления — за вами."
+          alt=""
           width={1440}
           height={610}
         />
+        <div className={styles.routesShade} aria-hidden="true" />
+        <div className={styles.routesTop}>
+          <p>05 / ВАШИ МАРШРУТЫ</p>
+          <img
+            className={styles.routesArrow}
+            src="/assets/icons/arrow-up-right-paper.svg"
+            alt=""
+            width={24}
+            height={24}
+          />
+        </div>
+        <div className={styles.routesCopy}>
+          <h2>
+            ВАШ ГОРОД.
+            <br />
+            ВАШ ГОЛОС.
+          </h2>
+          <p>
+            TourTap берёт на себя страницу. Содержание и впечатления — за вами.
+          </p>
+          <ul>
+            <li>Городские прогулки</li>
+            <li>Авторские маршруты</li>
+            <li>Камерные группы</li>
+          </ul>
+        </div>
       </section>
 
       <div className={styles.page}>
