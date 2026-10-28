@@ -1,5 +1,6 @@
 import { Button } from "@/components/button/button";
 import { Card } from "@/components/card/card";
+import { FaqAccordion } from "@/components/faq/faq-accordion";
 import { Header } from "@/components/header/header";
 import styles from "./page.module.scss";
 
@@ -57,10 +58,26 @@ const faqs = [
     answer:
       "Перешлите TourTap пост из Telegram с описанием вашей экскурсии. Бот соберёт готовую страницу с офертой, оплатой по СБП и чеком НПД за 20 секунд.",
   },
-  { question: "Нужен ли отдельный сайт?" },
-  { question: "Что увидит гость по ссылке?" },
-  { question: "Как устроена онлайн-оплата?" },
-  { question: "Для кого предназначен чек НПД?" },
+  {
+    question: "Нужен ли отдельный сайт?",
+    answer:
+      "Нет. Готовая страница открывается по ссылке TourTap. Гость читает описание и условия и бронирует экскурсию без отдельного сайта.",
+  },
+  {
+    question: "Что увидит гость по ссылке?",
+    answer:
+      "Фото, описание, время и условия экскурсии. На этой же странице можно выбрать количество гостей и перейти к оплате.",
+  },
+  {
+    question: "Как устроена онлайн-оплата?",
+    answer:
+      "Гость оплачивает экскурсию на странице по СБП. Отдельная переписка, чтобы договориться о переводе, не нужна.",
+  },
+  {
+    question: "Для кого предназначен чек НПД?",
+    answer:
+      "Чек НПД входит в сценарий для экскурсии самозанятого. Перед публикацией проверьте описание, условия и свои данные.",
+  },
 ];
 
 const footerLinks = [
@@ -165,17 +182,27 @@ export default function Home() {
       </div>
 
       <div className={styles.marquee}>
-        {marquee.flatMap((item) => [
-          <span key={item}>{item}</span>,
-          <img
-            key={`${item}-mark`}
-            className={styles.asterisk}
-            src="/icons/asterisk.svg"
-            alt=""
-            width={24}
-            height={24}
-          />,
-        ])}
+        <div className={styles.marqueeTrack}>
+          {[0, 1].map((copy) => (
+            <div
+              key={copy}
+              className={styles.marqueeGroup}
+              aria-hidden={copy === 1 || undefined}
+            >
+              {marquee.flatMap((item) => [
+                <span key={item}>{item}</span>,
+                <img
+                  key={`${item}-mark`}
+                  className={styles.asterisk}
+                  src="/icons/asterisk.svg"
+                  alt=""
+                  width={24}
+                  height={24}
+                />,
+              ])}
+            </div>
+          ))}
+        </div>
       </div>
 
       <div className={styles.page}>
@@ -499,7 +526,7 @@ export default function Home() {
       <div className={styles.page}>
       <section className={styles.section} id="faq">
         <div className={styles.faqGrid}>
-          <div>
+          <div className={styles.faqIntro}>
             <p className={styles.kicker}>
               <span className={styles.marker} />
               06 / Вопросы и ответы
@@ -513,17 +540,7 @@ export default function Home() {
               Начните с поста, который уже рассказывает о вашей экскурсии.
             </p>
           </div>
-          <div className={styles.accordion}>
-            {faqs.map((item, index) => (
-              <details key={item.question} className={styles.item} open={index === 0 || undefined}>
-                <summary>
-                  {item.question}
-                  <span className={styles.sign} aria-hidden="true" />
-                </summary>
-                {item.answer ? <p>{item.answer}</p> : null}
-              </details>
-            ))}
-          </div>
+          <FaqAccordion items={faqs} />
         </div>
       </section>
 
@@ -592,7 +609,7 @@ export default function Home() {
           </p>
         </div>
       </footer>
-      </div>
+        </div>
       </main>
     </div>
   );
