@@ -5,10 +5,10 @@ import { Header } from "@/components/header/header";
 import styles from "./page.module.scss";
 
 const assets = {
-  composition: "/assets/Объёмная композиция.png",
-  star: "/assets/Объёмная звезда.png",
-  excursion: "/assets/Фото экскурсии.png",
-  routes: "/assets/Ваши маршруты.png",
+  composition: "/assets/Объёмная композиция.webp",
+  star: "/assets/Объёмная звезда.webp",
+  excursion: "/assets/Фото экскурсии.webp",
+  routes: "/assets/Ваши маршруты.webp",
 };
 
 const marquee = ["МЕНЬШЕ РУТИНЫ", "БОЛЬШЕ МАРШРУТОВ", "ИЗ ПОСТА В БИЛЕТ"];
