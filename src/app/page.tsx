@@ -125,10 +125,14 @@ function OutlinePlane() {
 export default function Home() {
   return (
     <div className={styles.shell}>
-      <main>
+      <div className={styles.topbar}>
+        <div className={styles.page}>
+          <Header actionHref="#start" />
+        </div>
+      </div>
+      <main className={styles.content}>
       <div className={styles.page}>
       <section className={styles.hero}>
-        <Header actionHref="#start" />
         <div className={styles.cover}>
           <p className={styles.kicker}>
             <span className={styles.marker} />

@@ -8,6 +8,16 @@
   --border-default: #d8d4cc;
   background: var(--background-canvas);
   color: var(--foreground-ink);
+}
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: var(--background-canvas);
+}
+
+.content {
   overflow-x: clip;
 }
 
