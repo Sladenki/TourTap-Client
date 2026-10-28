@@ -1194,7 +1194,120 @@ article.guestCard {
   border-top: var(--border-width) solid var(--border-default);
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 768px) and (max-width: 1279px) {
+  .heroTitle {
+    font-size: 52px;
+    font-weight: var(--font-weight-black);
+    line-height: 1.02;
+  }
+
+  .h1 {
+    font-size: 40px;
+  }
+
+  .h2 {
+    font-size: 36px;
+  }
+
+  .h3 {
+    font-size: 26px;
+  }
+
+  .cta h2 {
+    font-size: 48px;
+  }
+
+  .cover {
+    gap: 24px;
+    padding: 40px 32px 36px;
+  }
+
+  .composition {
+    width: min(100%, 480px);
+  }
+
+  .section {
+    gap: 32px;
+    padding: 72px 32px;
+  }
+
+  .marquee {
+    font-size: 18px;
+  }
+
+  .routes {
+    min-height: 480px;
+    padding: 48px 32px;
+  }
+
+  .routesCopy h2 {
+    font-size: clamp(40px, 6vw, 64px);
+  }
+
+  .wordmark p {
+    font-size: clamp(72px, 14vw, 150px);
+  }
+
+  .footer {
+    padding-inline: 32px;
+  }
+}
+
+@media (min-width: 900px) and (max-width: 1279px) {
+  .bento,
+  .split,
+  .editorial,
+  .faqGrid,
+  .payGrid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 24px;
+    align-items: start;
+  }
+
+  .explain,
+  .manifesto {
+    width: auto;
+  }
+
+  .star {
+    width: min(100%, 280px);
+    height: auto;
+  }
+
+  .payCard h2 {
+    font-size: 32px;
+    line-height: 1.06;
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .cover {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(240px, 0.85fr);
+    column-gap: 32px;
+    align-items: center;
+  }
+
+  .kicker,
+  .heroTitle,
+  .coverCopy {
+    grid-column: 1;
+  }
+
+  .composition {
+    grid-column: 2;
+    grid-row: 1 / span 3;
+    width: 100%;
+    align-self: center;
+  }
+
+  .coverFoot {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (min-width: 1280px) {
   .heroTitle {
     width: 100%;
     font-size: 91px;

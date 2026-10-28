@@ -62,13 +62,24 @@
   }
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 840px) {
+  .header:not(.mobile) {
+    padding-inline: 32px;
+
+    .links {
+      display: flex;
+      gap: 20px;
+    }
+  }
+}
+
+@media (min-width: 1280px) {
   .header:not(.mobile) {
     height: var(--header-height-desktop);
     padding-inline: var(--header-padding-x-desktop);
 
     .links {
-      display: flex;
+      gap: 32px;
     }
   }
 }
