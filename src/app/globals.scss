@@ -204,3 +204,37 @@ body {
   color: var(--text-primary);
   font-family: var(--font-sans);
 }
+
+::selection {
+  background: var(--accent-primary);
+  color: var(--foreground-ink);
+}
+
+::-moz-selection {
+  background: var(--accent-primary);
+  color: var(--foreground-ink);
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--text-secondary) var(--background-subtle);
+}
+
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--background-subtle);
+}
+
+*::-webkit-scrollbar-thumb {
+  background: var(--text-secondary);
+  border: 2px solid var(--background-subtle);
+  border-radius: var(--radius-pill);
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: var(--foreground-ink);
+}
