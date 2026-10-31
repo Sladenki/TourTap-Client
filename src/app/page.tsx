@@ -2,6 +2,7 @@ import { Button } from "@/components/button/button";
 import { Card } from "@/components/card/card";
 import { FaqAccordion } from "@/components/faq/faq-accordion";
 import { Header } from "@/components/header/header";
+import { SiteFooter } from "@/components/site-footer/site-footer";
 import styles from "./page.module.scss";
 
 const assets = {
@@ -80,13 +81,6 @@ const faqs = [
   },
 ];
 
-const footerLinks = [
-  { href: "#how", label: "Как это работает" },
-  { href: "#guides", label: "Для гидов" },
-  { href: "#faq", label: "Вопросы" },
-  { href: "#start", label: "Открыть бота" },
-];
-
 function StepMark({ down = false }: { down?: boolean }) {
   return (
     <svg className={styles.stepMark} viewBox="0 0 12 12" aria-hidden="true">
@@ -127,7 +121,7 @@ export default function Home() {
     <div className={styles.shell}>
       <div className={styles.topbar}>
         <div className={styles.page}>
-          <Header actionHref="#start" />
+          <Header actionHref="/auth" />
         </div>
       </div>
       <main className={styles.content}>
@@ -154,7 +148,7 @@ export default function Home() {
               оплатой по СБП и чеком НПД за 20 секунд.
             </p>
             <div className={styles.heroAction}>
-              <Button className={styles.heroCta} href="#start">
+              <Button className={styles.heroCta} href="/auth">
                 Создать экскурсию
                 <Arrow />
               </Button>
@@ -249,7 +243,7 @@ export default function Home() {
                     <small>бот для ваших экскурсий</small>
                   </span>
                 </div>
-                <Button variant="forward" href="#start">
+                <Button variant="forward" href="/auth">
                   Переслать пост
                   <Arrow />
                 </Button>
@@ -378,7 +372,7 @@ export default function Home() {
                   <small>Выберите количество гостей</small>
                   <span className={styles.chevron} aria-hidden="true" />
                 </div>
-                <Button className={styles.bookAction} href="#start">
+                <Button className={styles.bookAction} href="/auth">
                   Забронировать
                   <Arrow />
                 </Button>
@@ -568,7 +562,7 @@ export default function Home() {
             ЭКСКУРСИЯ.
           </h2>
           <div className={styles.ctaRow}>
-            <Button className={styles.ctaAction} variant="inverse" href="#start">
+            <Button className={styles.ctaAction} variant="inverse" href="/auth">
               Создать экскурсию
               <Arrow />
             </Button>
@@ -590,36 +584,15 @@ export default function Home() {
       </section>
 
       <div className={styles.page}>
-      <footer className={styles.footer}>
-        <div className={styles.footerTop}>
-          <p>
-            Из вашего поста —
-            <br />
-            в новое приключение.
-          </p>
-          <nav aria-label="Подвал">
-            {footerLinks.map((link) => (
-              <a key={link.label} href={link.href}>
-                {link.label}
-              </a>
-            ))}
-          </nav>
-        </div>
-        <div className={styles.wordmark}>
-          <p>TourTap</p>
-          <a href="#start" aria-label="Создать экскурсию">
-            <Arrow />
-          </a>
-        </div>
-        <div className={styles.legal}>
-          <p>© 2026 TourTap</p>
-          <p>
-            <a href="#privacy">Политика конфиденциальности</a>
-            <a href="#terms">Условия использования</a>
-          </p>
-        </div>
-      </footer>
-        </div>
+        <SiteFooter
+          links={[
+            { href: "#how", label: "Как это работает" },
+            { href: "#guides", label: "Для гидов" },
+            { href: "#faq", label: "Вопросы" },
+            { href: "/auth", label: "Открыть бота" },
+          ]}
+        />
+      </div>
       </main>
     </div>
   );
