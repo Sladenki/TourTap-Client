@@ -355,6 +355,7 @@
   gap: 16px;
   padding: 24px;
   border-radius: var(--radius-24);
+  transform: rotate(-3deg);
 
   a {
     width: 100% !important;
@@ -455,6 +456,7 @@
   padding: 18px 18px 16px;
   border-radius: 22px;
   box-shadow: 0 10px 28px rgb(32 32 30 / 8%);
+  transform: rotate(4deg);
 
   ul {
     display: flex;
@@ -680,8 +682,7 @@
   gap: 20px;
 }
 
-.star,
-.ctaStar {
+.star {
   width: min(100%, 220px);
   height: auto;
 }
@@ -1111,14 +1112,15 @@ article.guestCard {
 
   .kicker {
     color: var(--foreground-ink);
+    font-weight: var(--font-weight-extrabold);
   }
 
   .page {
     position: relative;
     display: flex;
     flex-direction: column;
-    gap: 28px;
-    padding: 48px var(--gutter-mobile) 36px;
+    gap: 32px;
+    padding: 48px var(--gutter-mobile);
   }
 }
 
@@ -1127,14 +1129,43 @@ article.guestCard {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  gap: 32px;
+  width: 100%;
+}
+
+.ctaRow {
   gap: 24px;
+}
+
+.cta h2 {
+  width: 100%;
+}
+
+.ctaAction {
+  width: min(100%, var(--button-primary-width-desktop)) !important;
+  max-width: var(--button-primary-width-desktop) !important;
+  justify-content: space-between;
+}
+
+.ctaAction .arrowIcon {
+  width: 24px;
+  height: 24px;
+}
+
+.ctaStar {
+  display: none;
+}
+
+.ctaBreak {
+  display: block;
 }
 
 .cta p {
   margin: 0;
-  max-width: 28ch;
-  font-size: 16px;
-  line-height: 1.45;
+  max-width: none;
+  width: 100%;
+  font-size: var(--text-body-md-size);
+  line-height: 1.6;
 }
 
 .footer {
@@ -1281,11 +1312,70 @@ article.guestCard {
   }
 }
 
-@media (min-width: 1024px) and (max-width: 1279px) {
+.heroBreak {
+  display: none;
+}
+
+.heroAction {
+  width: 100%;
+}
+
+.heroCta {
+  width: min(100%, var(--button-primary-width-desktop)) !important;
+  max-width: var(--button-primary-width-desktop) !important;
+  justify-content: space-between;
+}
+
+.heroCta .arrowIcon {
+  width: 24px;
+  height: 24px;
+}
+
+.payCard h2 {
+  font-size: 24px;
+  line-height: 1.06;
+}
+
+@media (max-width: 719px) {
+  .cover {
+    gap: 24px;
+    padding: 32px var(--gutter-mobile) 30px;
+  }
+
+  .heroBreak {
+    display: block;
+  }
+
+  .heroTitle {
+    line-height: 1.01;
+  }
+
+  .coverFoot {
+    display: none;
+  }
+
+  .composition {
+    width: min(100%, 350px);
+  }
+
+  .star {
+    display: none;
+  }
+
+  :global(#guides) {
+    padding-bottom: 40px;
+  }
+
+  :global(#payment) {
+    padding-top: 24px;
+  }
+}
+
+@media (min-width: 720px) and (max-width: 1279px) {
   .cover {
     display: grid;
-    grid-template-columns: minmax(0, 1.15fr) minmax(240px, 0.85fr);
-    column-gap: 32px;
+    grid-template-columns: minmax(0, 1.15fr) minmax(200px, 0.85fr);
+    column-gap: 28px;
     align-items: center;
   }
 
@@ -1293,6 +1383,10 @@ article.guestCard {
   .heroTitle,
   .coverCopy {
     grid-column: 1;
+  }
+
+  .lead {
+    max-width: none;
   }
 
   .composition {
@@ -1304,6 +1398,12 @@ article.guestCard {
 
   .coverFoot {
     grid-column: 1 / -1;
+  }
+}
+
+@media (min-width: 720px) and (max-width: 1023px) {
+  .heroTitle {
+    font-size: 40px;
   }
 }
 
@@ -1437,10 +1537,6 @@ article.guestCard {
     line-height: var(--text-body-sm-leading);
   }
 
-  .forwardCard {
-    transform: rotate(-3deg);
-  }
-
   article.readyCard {
     flex-direction: row;
     gap: 24px;
@@ -1468,7 +1564,6 @@ article.guestCard {
     border-radius: var(--radius-20);
     background: var(--surface-paper);
     box-shadow: none;
-    transform: rotate(4deg);
   }
 
   article.bookingCard {
@@ -1692,8 +1787,21 @@ article.guestCard {
   }
 
   .cta .page {
+    gap: 42px;
     min-height: 543px;
     padding: 64px var(--gutter-desktop) 64px;
+  }
+
+  .ctaBody {
+    gap: 42px;
+  }
+
+  .ctaBreak {
+    display: none;
+  }
+
+  .ctaAction {
+    width: var(--button-primary-width-desktop) !important;
   }
 
   .ctaRow {
@@ -1702,23 +1810,13 @@ article.guestCard {
     gap: 40px;
   }
 
-  .ctaRow a {
-    justify-content: space-between;
-  }
-
-  .ctaRow .arrowIcon {
-    width: 24px;
-    height: 24px;
-  }
-
   .ctaRow p {
     width: 365px;
     max-width: none;
-    font-size: var(--text-body-md-size);
-    line-height: var(--text-body-md-leading);
   }
 
   .ctaStar {
+    display: block;
     position: absolute;
     top: 310px;
     right: 40px;

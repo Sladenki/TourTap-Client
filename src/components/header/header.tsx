@@ -47,7 +47,8 @@ export function Header({
         ))}
       </nav>
       <Button variant="outline" href={actionHref}>
-        {actionLabel}
+        <span className={styles.actionFull}>{actionLabel}</span>
+        <span className={styles.actionShort}>В бот</span>
         <svg viewBox="0 0 23 23" width="16" height="16" aria-hidden="true">
           <path
             d="M16.291 16.291V6.709H6.709M16.291 6.709 6.709 16.291"

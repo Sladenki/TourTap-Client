@@ -141,7 +141,10 @@ export default function Home() {
           <h1 className={styles.heroTitle}>
             ВАШ ПОСТ —
             <br />
-            УЖЕ СТРАНИЦА
+            УЖЕ
+            <br className={styles.heroBreak} />
+            {" "}
+            СТРАНИЦА
             <br />
             ЭКСКУРСИИ.
           </h1>
@@ -151,7 +154,7 @@ export default function Home() {
               оплатой по СБП и чеком НПД за 20 секунд.
             </p>
             <div className={styles.heroAction}>
-              <Button href="#start">
+              <Button className={styles.heroCta} href="#start">
                 Создать экскурсию
                 <Arrow />
               </Button>
@@ -559,10 +562,13 @@ export default function Home() {
             <br />
             ОСТАНОВКА —
             <br />
-            ВАША ЭКСКУРСИЯ.
+            ВАША
+            <br className={styles.ctaBreak} />
+            {" "}
+            ЭКСКУРСИЯ.
           </h2>
           <div className={styles.ctaRow}>
-            <Button variant="inverse" href="#start">
+            <Button className={styles.ctaAction} variant="inverse" href="#start">
               Создать экскурсию
               <Arrow />
             </Button>

@@ -43,6 +43,14 @@
   text-decoration: none;
 }
 
+.actionFull {
+  display: none;
+}
+
+.actionShort {
+  display: inline;
+}
+
 .desktop {
   min-width: var(--page-width-desktop);
   height: var(--header-height-desktop);
@@ -70,6 +78,14 @@
       display: flex;
       gap: 20px;
     }
+  }
+
+  .actionFull {
+    display: inline;
+  }
+
+  .actionShort {
+    display: none;
   }
 }
 
