@@ -46,11 +46,19 @@ export function LoginForm() {
 
   return (
     <>
-      <h1 className={styles.panelHead}>Давайте войдем в ваш профиль</h1>
+      <div className={styles.intro}>
+        <p className={styles.kicker}>
+          <span className={styles.dot} />
+          01 / Снова на маршруте
+        </p>
+        <h1 className={styles.title}>С возвращением</h1>
+        <p className={styles.lead}>Войдите в личный кабинет TourTap.</p>
+      </div>
+
       <form className={styles.form} onSubmit={onSubmit} noValidate>
         <div className={styles.field}>
           <label className={styles.label} htmlFor="login-login">
-            Ваша почта или номер телефона
+            Email или телефон
           </label>
           <div className={styles.control}>
             <input
@@ -59,7 +67,7 @@ export function LoginForm() {
               name="login"
               type="text"
               autoComplete="username"
-              placeholder="example@mail.ru или +7 (999) 777-77-77"
+              placeholder="Введите email или номер телефона"
               value={login}
               onChange={(event) => onLoginChange(event.target.value)}
               aria-invalid={Boolean(loginMessage) || undefined}
@@ -76,31 +84,29 @@ export function LoginForm() {
 
         <PasswordField
           id="login-password"
-          label="Введите ваш пароль"
+          label="Пароль"
           name="password"
           autoComplete="current-password"
-          placeholder="*********"
+          placeholder="••••••••"
           value={password}
           onChange={(event) => setPassword(event.target.value)}
           required
         />
 
-        <p className={styles.note}>
-          Если у Вас в профиле была прикреплена социальная сеть — вы можете войти с помощью нее!
-          <br />
-          Если нет — <a href="/auth">мы поможем это сделать здесь.</a>
-          <br />
-          Все для вашего удобства!
-        </p>
+        <a className={styles.forgot} href="#forgot">
+          Забыли пароль?
+        </a>
 
         <Button className={styles.submit} type="submit" disabled={!canSubmit}>
-          ВОЙТИ
+          Войти
           <Arrow />
         </Button>
 
         <p className={styles.switch}>
           Нет аккаунта? <a href="/auth">Зарегистрироваться</a>
         </p>
+
+        <p className={styles.legal}>© 2026 TourTap</p>
       </form>
     </>
   );

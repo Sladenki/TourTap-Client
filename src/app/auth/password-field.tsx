@@ -10,6 +10,7 @@ type PasswordFieldProps = {
   invalid?: boolean;
   message?: string;
   messageTone?: "error" | "success";
+  hint?: string;
 } & Omit<InputHTMLAttributes<HTMLInputElement>, "type" | "id" | "className">;
 
 function classNames(...parts: Array<string | false | undefined>) {
@@ -58,6 +59,7 @@ export function PasswordField({
   invalid,
   message,
   messageTone = "error",
+  hint,
   ...props
 }: PasswordFieldProps) {
   const [visible, setVisible] = useState(false);
@@ -99,6 +101,8 @@ export function PasswordField({
         >
           {message}
         </p>
+      ) : hint ? (
+        <p className={styles.passwordHint}>{hint}</p>
       ) : null}
     </div>
   );

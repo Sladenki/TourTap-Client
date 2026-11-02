@@ -11,7 +11,6 @@ import {
   isPhone,
   passwordComplete,
   passwordRules,
-  passwordScore,
   phoneError,
 } from "./validation";
 import styles from "./auth.module.scss";
@@ -47,9 +46,9 @@ export function RegisterForm() {
   const [password, setPassword] = useState("");
   const [confirm, setConfirm] = useState("");
   const [agreed, setAgreed] = useState(false);
-  const score = passwordScore(password);
+
   const rules = passwordRules(password);
-  const showHint = password.length > 0;
+  const showRules = password.length > 0;
   const emailMessage = emailError(email);
   const phoneMessage = phoneError(phone);
   const passwordsMatch = confirm.length > 0 && confirm === password;
@@ -75,11 +74,21 @@ export function RegisterForm() {
 
   return (
     <>
-      <h1 className={styles.panelHead}>Давайте создадим ваш профиль</h1>
+      <div className={styles.intro}>
+        <p className={styles.kicker}>
+          <span className={styles.dot} />
+          01 / Начало вашего маршрута
+        </p>
+        <h1 className={styles.title}>Регистрация</h1>
+        <p className={styles.lead}>
+          Создайте аккаунт, чтобы публиковать экскурсии и принимать бронирования.
+        </p>
+      </div>
+
       <form className={styles.form} onSubmit={onSubmit} noValidate>
         <div className={styles.field}>
           <label className={styles.label} htmlFor="register-name">
-            Ваши имя и фамилия
+            ФИО
           </label>
           <div className={styles.control}>
             <input
@@ -88,7 +97,7 @@ export function RegisterForm() {
               name="name"
               type="text"
               autoComplete="name"
-              placeholder="Иванов Иван Иванович"
+              placeholder="Введите фамилию, имя и отчество"
               value={name}
               onChange={(event) => setName(formatName(event.target.value))}
               onKeyDown={(event) => {
@@ -102,7 +111,7 @@ export function RegisterForm() {
 
         <div className={styles.field}>
           <label className={styles.label} htmlFor="register-email">
-            Ваша почта
+            Электронная почта
           </label>
           <div className={styles.control}>
             <input
@@ -111,7 +120,7 @@ export function RegisterForm() {
               name="email"
               type="email"
               autoComplete="email"
-              placeholder="example@mail.ru"
+              placeholder="Введите email"
               value={email}
               onChange={(event) => setEmail(event.target.value)}
               aria-invalid={Boolean(emailMessage) || undefined}
@@ -128,7 +137,7 @@ export function RegisterForm() {
 
         <div className={styles.field}>
           <label className={styles.label} htmlFor="register-phone">
-            Ваш номер телефона
+            Телефон
           </label>
           <div className={styles.control}>
             <input
@@ -138,7 +147,7 @@ export function RegisterForm() {
               type="tel"
               inputMode="tel"
               autoComplete="tel"
-              placeholder="+7 (999) 777-77-77"
+              placeholder="+7 (___) ___-__-__"
               value={phone}
               onChange={(event) => setPhone(formatPhone(event.target.value))}
               aria-invalid={Boolean(phoneMessage) || undefined}
@@ -155,41 +164,21 @@ export function RegisterForm() {
 
         <PasswordField
           id="register-password"
-          label="Введите ваш пароль"
+          label="Пароль"
           name="password"
           autoComplete="new-password"
-          placeholder="*********"
+          placeholder="••••••••"
           value={password}
           onChange={(event) => setPassword(event.target.value)}
-          required
-        />
-
-        <PasswordField
-          id="register-confirm"
-          label="Повторите ваш пароль"
-          name="confirm"
-          autoComplete="new-password"
-          placeholder="*********"
-          value={confirm}
-          onChange={(event) => setConfirm(event.target.value)}
-          invalid={passwordsMismatch}
-          message={confirmMessage}
-          messageTone={passwordsMatch ? "success" : "error"}
+          hint={
+            showRules ? undefined : "Минимум 8 символов, заглавная латинская буква и цифра."
+          }
           required
         />
 
         <div
-          className={classNames(styles.strength, showHint && styles.strengthVisible)}
-          aria-hidden="true"
-        >
-          <span className={classNames(styles.bar, score >= 1 && styles.barWeak)} />
-          <span className={classNames(styles.bar, score >= 2 && styles.barFair)} />
-          <span className={classNames(styles.bar, score >= 3 && styles.barStrong)} />
-        </div>
-
-        <div
-          className={classNames(styles.hintWrap, showHint && styles.hintOpen)}
-          aria-hidden={!showHint}
+          className={classNames(styles.hintWrap, showRules && styles.hintOpen)}
+          aria-hidden={!showRules}
         >
           <div className={styles.hintInner}>
             <ul className={styles.rules} aria-label="Требования к паролю">
@@ -207,7 +196,7 @@ export function RegisterForm() {
                         aria-checked={checked}
                       />
                       <span className={styles.checkbox}>
-                        <svg viewBox="0 0 16 16" width="12" height="12">
+                        <svg viewBox="0 0 16 16" width="11" height="11">
                           <path
                             d="M3.2 8.2 6.4 11.2 12.8 4.6"
                             fill="none"
@@ -227,6 +216,20 @@ export function RegisterForm() {
           </div>
         </div>
 
+        <PasswordField
+          id="register-confirm"
+          label="Подтвердите пароль"
+          name="confirm"
+          autoComplete="new-password"
+          placeholder="••••••••"
+          value={confirm}
+          onChange={(event) => setConfirm(event.target.value)}
+          invalid={passwordsMismatch}
+          message={confirmMessage}
+          messageTone={passwordsMatch ? "success" : "error"}
+          required
+        />
+
         <label className={styles.agree}>
           <span className={styles.agreeControl}>
             <input
@@ -237,20 +240,12 @@ export function RegisterForm() {
               required
             />
             <span className={styles.agreeMark} aria-hidden="true">
-              <svg viewBox="0 0 20 20" width="20" height="20">
-                <circle
-                  cx="10"
-                  cy="10"
-                  r="8.25"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1.6"
-                />
+              <svg viewBox="0 0 16 16" width="12" height="12">
                 <path
-                  d="M6.2 10.2 8.8 12.7 13.9 7.4"
+                  d="M3.2 8.2 6.4 11.2 12.8 4.6"
                   fill="none"
                   stroke="currentColor"
-                  strokeWidth="1.7"
+                  strokeWidth="1.8"
                   strokeLinecap="round"
                   strokeLinejoin="round"
                 />
@@ -258,20 +253,22 @@ export function RegisterForm() {
             </span>
           </span>
           <span>
-            Я принимаю условия{" "}
-            <a href="#terms">Пользовательского соглашения</a> и{" "}
-            <a href="#privacy">Политики конфиденциальности</a>
+            Принимаю{" "}
+            <a href="#terms">пользовательское соглашение</a> и{" "}
+            <a href="#privacy">политику конфиденциальности</a>.
           </span>
         </label>
 
         <Button className={styles.submit} type="submit" disabled={!canSubmit}>
-          РЕГИСТРАЦИЯ
+          Зарегистрироваться
           <Arrow />
         </Button>
 
         <p className={styles.switch}>
           Уже есть аккаунт? <a href="/auth/login">Войти</a>
         </p>
+
+        <p className={styles.legal}>© 2026 TourTap</p>
       </form>
     </>
   );
