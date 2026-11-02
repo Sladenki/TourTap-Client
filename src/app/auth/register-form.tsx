@@ -1,5 +1,6 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { useState, type FormEvent } from "react";
 import { Button } from "@/components/button/button";
 import { PasswordField } from "./password-field";
@@ -40,6 +41,7 @@ function classNames(...parts: Array<string | false | undefined>) {
 }
 
 export function RegisterForm() {
+  const router = useRouter();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
@@ -70,6 +72,7 @@ export function RegisterForm() {
   function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (!canSubmit) return;
+    router.push("/dashboard");
   }
 
   return (

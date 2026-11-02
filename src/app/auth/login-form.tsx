@@ -1,5 +1,6 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { useState, type FormEvent } from "react";
 import { Button } from "@/components/button/button";
 import { PasswordField } from "./password-field";
@@ -25,6 +26,7 @@ function classNames(...parts: Array<string | false | undefined>) {
 }
 
 export function LoginForm() {
+  const router = useRouter();
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
 
@@ -42,6 +44,7 @@ export function LoginForm() {
   function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (!canSubmit) return;
+    router.push("/dashboard");
   }
 
   return (
