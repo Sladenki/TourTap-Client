@@ -36,8 +36,6 @@ export function LiveWall() {
   }, []);
 
   useEffect(() => {
-    if (!supabase) return;
-
     let stop = false;
     const client = supabase;
 
@@ -108,7 +106,7 @@ export function LiveWall() {
           <span
             className={`${styles.dot} ${link === "live" ? styles.liveDot : ""} ${link === "poll" ? styles.pollDot : ""}`}
           />
-          {supabase ? linkLabel : "Нет ключа"}
+          {linkLabel}
         </p>
       </header>
 
@@ -129,9 +127,7 @@ export function LiveWall() {
         {problem && people.length === 0 ? <p className={styles.problem}>{problem}</p> : null}
         {!problem && !latest ? (
           <p className={styles.empty}>
-            {supabase
-              ? "Имена появятся здесь, как только гости займут место по QR"
-              : "Вставьте publishable key в .env.local и выполните SQL в Supabase"}
+            Имена появятся здесь, как только гости займут место по QR
           </p>
         ) : null}
         {latest ? (

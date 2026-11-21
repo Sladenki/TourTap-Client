@@ -35,11 +35,6 @@ export function BookPanel() {
       setError(validation);
       return;
     }
-    if (!supabase) {
-      setError("Нет publishable key в .env.local.");
-      return;
-    }
-
     setPending(true);
     setError(null);
     const { data, error: insertError } = await supabase
@@ -118,13 +113,8 @@ export function BookPanel() {
                     onChange={(event) => setName(event.target.value)}
                   />
                 </label>
-                {supabase ? null : (
-                  <p className={styles.note}>
-                    Осталось вставить publishable key в .env.local и выполнить SQL в Supabase.
-                  </p>
-                )}
                 {error ? <p className={styles.error}>{error}</p> : null}
-                <Button className={styles.submit} variant="booking" type="submit" disabled={pending || !supabase}>
+                <Button className={styles.submit} variant="booking" type="submit" disabled={pending}>
                   {pending ? "Записываем…" : "Занять место"}
                 </Button>
               </form>
