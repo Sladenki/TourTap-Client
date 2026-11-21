@@ -1,0 +1,261 @@
+.stage {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  padding: clamp(20px, 3vw, 48px);
+  overflow: hidden;
+  background: #141311;
+  color: #faf7f2;
+  color-scheme: dark;
+}
+
+.top,
+.hero {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.top {
+  align-items: center;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-width: 0;
+}
+
+.thumb {
+  width: 64px;
+  height: 64px;
+  flex: none;
+  object-fit: cover;
+  border-radius: 16px;
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 22px;
+  font-weight: var(--font-weight-extrabold);
+  line-height: 1;
+}
+
+.mark {
+  width: 28px;
+  height: 28px;
+  color: var(--accent-primary);
+}
+
+.live {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  font-size: 14px;
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  flex: none;
+  border-radius: 50%;
+  background: #6f6d67;
+}
+
+.liveDot {
+  background: #ff6a2b;
+  box-shadow: 0 0 0 0 rgb(255 106 43 / 0.7);
+  animation: pulse 1.6s ease-out infinite;
+}
+
+.pollDot {
+  background: #daff7c;
+}
+
+.title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(36px, 5.4vw, 84px);
+  font-weight: var(--font-weight-extrabold);
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+}
+
+.lead {
+  margin: 12px 0 0;
+  color: #b0aea7;
+  font-size: clamp(16px, 1.6vw, 22px);
+}
+
+.countBlock {
+  flex: none;
+  text-align: right;
+}
+
+.count {
+  display: block;
+  font-family: var(--font-display);
+  font-size: clamp(72px, 11vw, 168px);
+  font-weight: var(--font-weight-extrabold);
+  line-height: 0.8;
+  letter-spacing: -0.04em;
+  color: #daff7c;
+  font-variant-numeric: tabular-nums;
+  animation: pop 0.35s ease;
+}
+
+.countLabel {
+  display: block;
+  margin-top: 8px;
+  color: #b0aea7;
+  font-size: clamp(16px, 1.8vw, 24px);
+  font-weight: var(--font-weight-semibold);
+}
+
+.board {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 22px;
+  min-height: 0;
+}
+
+.featuredWrap {
+  animation: rise 0.45s ease;
+}
+
+.fresh {
+  margin: 0 0 8px;
+  color: #ff6a2b;
+  font-size: 14px;
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.featured,
+.empty {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: var(--font-weight-extrabold);
+  line-height: 1.05;
+  overflow-wrap: anywhere;
+}
+
+.featured {
+  font-size: clamp(36px, 4.6vw, 76px);
+}
+
+.empty,
+.problem {
+  max-width: 18ch;
+  color: #faf7f2;
+  font-size: clamp(28px, 3vw, 48px);
+}
+
+.problem {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: var(--font-weight-bold);
+  line-height: 1.15;
+}
+
+.names {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  gap: 12px;
+  min-height: 0;
+  overflow: auto;
+  padding-bottom: 8px;
+}
+
+.chip {
+  padding: 12px 18px;
+  border-radius: var(--radius-pill);
+  background: #242320;
+  font-size: clamp(16px, 1.8vw, 24px);
+  font-weight: var(--font-weight-bold);
+}
+
+.setupUrl {
+  margin: 0;
+  color: #b0aea7;
+  font-size: 16px;
+}
+
+.setupUrl span {
+  color: #faf7f2;
+}
+
+.sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+
+@keyframes pulse {
+  70% {
+    box-shadow: 0 0 0 12px rgb(255 106 43 / 0);
+  }
+
+  100% {
+    box-shadow: 0 0 0 0 rgb(255 106 43 / 0);
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes pop {
+  from {
+    opacity: 0.45;
+    transform: scale(0.94);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (max-width: 760px) {
+  .hero {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .countBlock {
+    text-align: left;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .count,
+  .featuredWrap,
+  .liveDot {
+    animation: none;
+  }
+}
