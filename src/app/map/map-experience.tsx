@@ -116,7 +116,7 @@ export default function MapExperience() {
         mapRef.current = map;
         map.addControl(new NavigationControl({ showCompass: true, visualizePitch: true }), "top-right");
 
-        const routeLayers = ["route-focus", "route-line", "route-casing"];
+        const routeLayers = ["route-focus", "route-line", "route-casing", "zone-core", "zone-mid", "zone-outer", "zone-field"];
         const hitId = (point: MapMouseEvent["point"]) => {
           if (!map?.isStyleLoaded()) return null;
           const layers = routeLayers.filter((id) => map?.getLayer(id));
@@ -246,8 +246,8 @@ export default function MapExperience() {
     frameRoutes(map, [item], {
       padding: focusPadding(),
       duration: reduced ? 0 : 1100,
-      pitch: reduced ? 0 : 48,
-      bearing: reduced ? 0 : -18,
+      pitch: reduced ? 0 : 51,
+      bearing: reduced ? 0 : -24,
       maxZoom: 15.2,
     });
   }, [selectedId, mapReady]);
@@ -270,8 +270,8 @@ export default function MapExperience() {
     frameRoutes(map, [item], {
       padding: focusPadding(),
       duration: reduced ? 0 : 900,
-      pitch: reduced ? 0 : 48,
-      bearing: reduced ? 0 : -18,
+      pitch: reduced ? 0 : 51,
+      bearing: reduced ? 0 : -24,
       maxZoom: 15.2,
     });
   }

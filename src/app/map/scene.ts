@@ -1,11 +1,13 @@
 import { LngLatBounds, type ExpressionSpecification, type FilterSpecification, type Map as MapLibreMap } from "maplibre-gl";
 import { excursions, toRouteCollection, type CategoryId, type Excursion } from "@/lib/mock-excursions";
+import { toZoneCollection } from "./zones";
 
 type FramePadding = { top: number; right: number; bottom: number; left: number };
 
 export const STYLE_URL = "https://tiles.openfreemap.org/styles/positron";
 
 const SOURCE = "routes";
+const ZONES = "zones";
 
 type LooseLayer = {
   id: string;
@@ -113,6 +115,55 @@ function beforeSymbols(map: MapLibreMap) {
 
 export function addCityAndRoutes(map: MapLibreMap, data: ReturnType<typeof toRouteCollection>) {
   const before = beforeSymbols(map);
+  const wash = (hot: number, dim: number, rest: number): ExpressionSpecification => [
+    "case",
+    ["boolean", ["feature-state", "hot"], false],
+    hot,
+    ["boolean", ["feature-state", "dim"], false],
+    dim,
+    rest,
+  ];
+  const band = (name: string): FilterSpecification => ["==", ["get", "band"], name];
+
+  map.addSource(ZONES, { type: "geojson", data: toZoneCollection(excursions) });
+  for (const layer of [
+    { id: "zone-field", band: "field", opacity: wash(0.82, 0, 0.5) },
+    { id: "zone-outer", band: "outer", opacity: wash(0.7, 0, 0.34) },
+    { id: "zone-mid", band: "mid", opacity: wash(0.42, 0, 0.14) },
+    { id: "zone-core", band: "core", opacity: wash(0.22, 0, 0.04) },
+  ]) {
+    map.addLayer(
+      {
+        id: layer.id,
+        type: "fill",
+        source: ZONES,
+        filter: band(layer.band),
+        paint: {
+          "fill-color": ["get", "fill"],
+          "fill-opacity": layer.opacity,
+          "fill-opacity-transition": { duration: 280, delay: 0 },
+        },
+      },
+      before,
+    );
+  }
+  map.addLayer(
+    {
+      id: "zone-edge",
+      type: "line",
+      source: ZONES,
+      filter: band("outer"),
+      layout: { "line-cap": "round", "line-join": "round" },
+      paint: {
+        "line-color": ["get", "color"],
+        "line-width": zoomWidth(1.1, 2.2),
+        "line-blur": 0.6,
+        "line-opacity": wash(0.72, 0, 0.14),
+        "line-opacity-transition": { duration: 280, delay: 0 },
+      },
+    },
+    before,
+  );
 
   try {
     if (!map.getLayer("building-3d")) {
@@ -122,19 +173,21 @@ export function addCityAndRoutes(map: MapLibreMap, data: ReturnType<typeof toRou
           type: "fill-extrusion",
           source: "openmaptiles",
           "source-layer": "building",
-          minzoom: 13.7,
+          minzoom: 13.4,
           paint: {
-            "fill-extrusion-color": "#e3dfd6",
-            "fill-extrusion-opacity": 0.78,
+            "fill-extrusion-color": "#e6e1d6",
+            "fill-extrusion-opacity": 0.86,
             "fill-extrusion-vertical-gradient": true,
             "fill-extrusion-height": [
               "interpolate",
               ["linear"],
               ["zoom"],
-              13.7,
+              13.4,
               0,
-              15.6,
-              ["*", ["coalesce", ["get", "render_height"], ["get", "height"], 10], 0.7],
+              14.6,
+              ["*", ["coalesce", ["get", "render_height"], ["get", "height"], 8], 0.72],
+              16.2,
+              ["*", ["coalesce", ["get", "render_height"], ["get", "height"], 9], 0.95],
             ],
             "fill-extrusion-base": ["coalesce", ["get", "render_min_height"], 0],
           },
@@ -143,15 +196,22 @@ export function addCityAndRoutes(map: MapLibreMap, data: ReturnType<typeof toRou
       );
     }
 
+    map.setLight({
+      anchor: "viewport",
+      color: "#fff8f0",
+      intensity: 0.28,
+      position: [1.15, 200, 38],
+    });
+
     if (map.getLayer("building")) {
       map.setPaintProperty("building", "fill-opacity", [
         "interpolate",
         ["linear"],
         ["zoom"],
-        13.6,
+        12.8,
         1,
-        15.2,
-        0.08,
+        14.4,
+        0.05,
       ]);
     }
   } catch {
@@ -317,12 +377,18 @@ export function syncScene(map: MapLibreMap, state: SceneState) {
   map.setFilter("route-focus-casing", combine(focusFilter));
   map.setFilter("route-focus-glow", combine(focusFilter));
 
+  for (const layer of ["zone-field", "zone-outer", "zone-mid", "zone-core", "zone-edge"]) {
+    const own = layer === "zone-edge" ? ["==", ["get", "band"], "outer"] : ["==", ["get", "band"], layer.replace("zone-", "")];
+    map.setFilter(layer, combine(own as FilterSpecification));
+  }
+
   for (const item of excursions) {
     const hot = item.id === state.hoverId || item.id === state.selectedId;
-    map.setFeatureState(
-      { source: SOURCE, id: item.id },
-      { hot, dim: ids.length > 0 && !hot },
-    );
+    const featureState = { hot, dim: ids.length > 0 && !hot };
+    map.setFeatureState({ source: SOURCE, id: item.id }, featureState);
+    for (const band of item.category === "eco" ? ["field", "outer", "mid", "core"] : ["outer", "mid", "core"]) {
+      map.setFeatureState({ source: ZONES, id: `${item.id}:${band}` }, featureState);
+    }
   }
 }
 
