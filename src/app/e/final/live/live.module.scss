@@ -7,7 +7,7 @@
   padding: clamp(20px, 3vw, 48px);
   overflow: hidden;
   background: #141311;
-  color: #faf7f2;
+  color: var(--surface-paper);
   color-scheme: dark;
 }
 
@@ -73,7 +73,7 @@
 }
 
 .liveDot {
-  background: #ff6a2b;
+  background: var(--accent-primary);
   box-shadow: 0 0 0 0 rgb(255 106 43 / 0.7);
   animation: pulse 1.6s ease-out infinite;
 }
@@ -137,7 +137,7 @@
 
 .fresh {
   margin: 0 0 8px;
-  color: #ff6a2b;
+  color: var(--accent-primary);
   font-size: 14px;
   font-weight: var(--font-weight-bold);
   letter-spacing: 0.08em;
@@ -160,7 +160,7 @@
 .empty,
 .problem {
   max-width: 18ch;
-  color: #faf7f2;
+  color: var(--surface-paper);
   font-size: clamp(28px, 3vw, 48px);
 }
 
@@ -196,7 +196,7 @@
 }
 
 .setupUrl span {
-  color: #faf7f2;
+  color: var(--surface-paper);
 }
 
 .sr {

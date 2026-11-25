@@ -1,7 +1,7 @@
 .shell {
   min-height: 100vh;
-  background: var(--background-canvas, #faf7f2);
-  color: var(--foreground-ink, #20201e);
+  background: var(--background-canvas);
+  color: var(--foreground-ink);
 }
 
 .topbar {
@@ -72,7 +72,7 @@
     min-height: 680px;
     padding: 44px 40px 32px;
     border-radius: 28px;
-    background: #eeeae3;
+    background: var(--background-subtle);
     overflow: hidden;
   }
 }

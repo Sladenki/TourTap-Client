@@ -2,8 +2,8 @@
   display: grid;
   grid-template-columns: 1fr;
   min-height: 100vh;
-  background: #faf7f2;
-  color: #20201e;
+  background: var(--background-canvas);
+  color: var(--foreground-ink);
 }
 
 .sidebar {
@@ -58,8 +58,8 @@
 }
 
 .navLinkActive {
-  background: #eeeae3;
-  color: #20201e;
+  background: var(--background-subtle);
+  color: var(--foreground-ink);
 
   svg {
     color: var(--accent-primary);
@@ -146,8 +146,8 @@
   height: 40px;
   place-items: center;
   border-radius: 50%;
-  background: #eeeae3;
-  color: #20201e;
+  background: var(--background-subtle);
+  color: var(--foreground-ink);
   font-size: 12px;
   font-weight: var(--font-weight-extrabold);
 }
@@ -238,7 +238,7 @@
   gap: 18px;
   padding: 28px 24px;
   border-radius: 28px;
-  background: #20201e;
+  background: var(--foreground-ink);
   color: #fff;
 }
 
@@ -279,7 +279,7 @@
   min-height: 180px;
   padding: 24px;
   border-radius: 28px;
-  background: #eeeae3;
+  background: var(--background-subtle);
 }
 
 .promoLabel {
@@ -298,7 +298,7 @@
   place-items: center;
   border-radius: 50%;
   background: #daff7c;
-  color: #20201e;
+  color: var(--foreground-ink);
   font-family: var(--font-display);
   font-size: 20px;
   font-weight: var(--font-weight-extrabold);
@@ -323,7 +323,7 @@
   gap: 12px;
   padding: 20px;
   border-radius: 24px;
-  background: #eeeae3;
+  background: var(--background-subtle);
 }
 
 .statLabel {
@@ -465,7 +465,7 @@
     flex-direction: column;
     padding: 28px 18px 24px;
     border-right: 1px solid #e4e0d8;
-    background: #faf7f2;
+    background: var(--background-canvas);
   }
 
   .topbar {

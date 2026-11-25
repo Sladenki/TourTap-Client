@@ -9,7 +9,7 @@ export function MapHeader() {
           <path
             d="M20.791 20.791V11.209H11.209M20.791 11.209 11.209 20.791"
             fill="none"
-            stroke="#20201e"
+            stroke="#fdf3ff"
             strokeWidth="1.8"
             strokeLinecap="round"
           />

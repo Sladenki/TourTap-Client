@@ -52,7 +52,7 @@
 
 .primary {
   background: var(--accent-primary);
-  color: var(--foreground-ink);
+  color: var(--text-on-accent);
 }
 
 .inverse {
@@ -80,7 +80,7 @@
 .forward {
   border-radius: var(--radius-control);
   background: var(--accent-primary);
-  color: var(--foreground-ink);
+  color: var(--text-on-accent);
 }
 
 .booking {

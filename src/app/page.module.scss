@@ -1,11 +1,4 @@
 .shell {
-  --background-canvas: #faf7f2;
-  --background-subtle: #eeeae3;
-  --surface-paper: #faf7f2;
-  --surface-elevated: #ffffff;
-  --text-primary: #20201e;
-  --text-secondary: #6f6d67;
-  --border-default: #d8d4cc;
   background: var(--background-canvas);
   color: var(--foreground-ink);
 }
@@ -183,7 +176,7 @@
     padding: 7px 12px;
     border-radius: var(--radius-pill);
     background: var(--accent-lime);
-    color: var(--foreground-ink);
+    color: var(--accent-primary);
     font-size: 11px;
     font-weight: var(--font-weight-bold);
     line-height: normal;
@@ -232,7 +225,7 @@
   border: 0;
   box-sizing: border-box;
   background: var(--accent-primary);
-  color: var(--foreground-ink);
+  color: var(--text-on-accent);
   font-family: var(--font-display);
   font-size: 16px;
   font-weight: var(--font-weight-extrabold);
@@ -484,7 +477,7 @@
   padding: 7px 12px;
   border-radius: var(--radius-pill);
   background: var(--accent-lime);
-  color: var(--foreground-ink);
+  color: var(--accent-primary);
   font-size: 11px;
   font-weight: var(--font-weight-bold);
   letter-spacing: 0;
@@ -788,7 +781,7 @@
   padding: 7px 12px;
   border-radius: var(--radius-pill);
   background: var(--accent-mint);
-  color: var(--foreground-ink);
+  color: var(--accent-secondary);
   font-size: 11px;
   font-weight: var(--font-weight-bold);
   line-height: normal;
@@ -1104,10 +1097,10 @@ article.guestCard {
   flex-direction: column;
   width: 100%;
   background: var(--accent-primary);
-  color: var(--foreground-ink);
+  color: var(--text-on-accent);
 
   .kicker {
-    color: var(--foreground-ink);
+    color: var(--text-on-accent);
     font-weight: var(--font-weight-extrabold);
   }
 

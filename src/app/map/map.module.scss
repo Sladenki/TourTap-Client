@@ -1,47 +1,18 @@
-@font-face {
-  font-family: Montserrat;
-  src: url("/fonts/montserrat-cyrillic.woff2") format("woff2");
-  font-weight: 100 900;
-  font-style: normal;
-  font-display: swap;
-  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
-}
-
-@font-face {
-  font-family: Montserrat;
-  src: url("/fonts/montserrat-latin.woff2") format("woff2");
-  font-weight: 100 900;
-  font-style: normal;
-  font-display: swap;
-  unicode-range:
-    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC,
-    U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-
 .page {
-  --background-canvas: #faf7f2;
-  --surface-paper: #faf7f2;
-  --surface-elevated: #ffffff;
-  --text-primary: #20201e;
-  --text-secondary: #6f6d67;
-  --foreground-ink: #20201e;
-  --accent-primary: #ff6a2b;
-  --border-default: #d8d4cc;
-
   position: relative;
   height: 100dvh;
   overflow: hidden;
-  background: #f1efe8;
+  background: var(--background-canvas);
   color: var(--text-primary);
   color-scheme: light;
-  font-family: "Montserrat", sans-serif;
+  font-family: var(--font-sans);
 }
 
 .map {
   position: absolute;
   z-index: 0;
   inset: 0;
-  background: #f1efe8;
+  background: var(--background-canvas);
   opacity: 0;
   transition: opacity 0.8s ease;
 }
@@ -71,7 +42,7 @@
   padding: 0 14px 0 8px;
   border: 1px solid var(--border-default);
   border-radius: var(--radius-pill);
-  background: #fff;
+  background: var(--surface-elevated);
   color: inherit;
   font-size: 16px;
   font-weight: 800;
@@ -101,6 +72,7 @@
 
 .city {
   margin: 3px 0 0;
+  color: #000;
   font-family: var(--font-display);
   font-size: 26px;
   font-weight: 500;
@@ -121,7 +93,7 @@
   padding: 8px;
   border: 1px solid var(--border-default);
   border-radius: 22px;
-  background: #fff;
+  background: var(--surface-elevated);
 }
 
 .filter {
@@ -134,7 +106,7 @@
   border-radius: var(--radius-pill);
   background: transparent;
   color: var(--text-primary);
-  font-family: "Montserrat", sans-serif;
+  font-family: var(--font-sans);
   font-size: 13.5px;
   font-weight: 600;
   line-height: 1;
@@ -142,7 +114,7 @@
   cursor: pointer;
 
   &:hover:not([aria-pressed="true"]) {
-    background: #f3f1eb;
+    background: #f6eafb;
   }
 
   &[aria-pressed="true"] {
@@ -182,14 +154,14 @@
   padding: 10px 16px 10px 12px;
   border: 1px solid var(--border-default);
   border-radius: 18px;
-  background: #fff;
+  background: var(--surface-elevated);
   translate: -50% 0;
   pointer-events: none;
   animation: lift 360ms ease;
 }
 
 .preview[data-category="eco"] {
-  background: #f4f8f5;
+  background: var(--surface-elevated);
 }
 
 .previewCopy {
@@ -235,12 +207,12 @@
   overflow: auto;
   border: 1px solid var(--border-default);
   border-radius: var(--radius-excursion);
-  background: #fff;
+  background: var(--surface-elevated);
   animation: cardIn 420ms ease;
 }
 
 .sheet[data-category="eco"] {
-  background: #f4f8f5;
+  background: var(--surface-elevated);
 }
 
 .cardTop {
@@ -277,7 +249,7 @@
   cursor: pointer;
 
   &:hover {
-    background: #f3f1eb;
+    background: #f6eafb;
     color: var(--text-primary);
   }
 
@@ -289,6 +261,7 @@
 
 .title {
   margin: 0;
+  color: #000;
   font-family: var(--font-display);
   font-size: 26px;
   font-weight: 500;
@@ -348,6 +321,14 @@
 .more {
   align-self: flex-start;
   margin-top: 2px;
+  background: var(--accent-primary);
+  color: #fff;
+  box-shadow: none;
+
+  &:hover,
+  &:focus-visible {
+    box-shadow: inset 0 0 0 1.5px #fff;
+  }
 }
 
 .notice {
@@ -359,7 +340,7 @@
   padding: 12px 16px;
   border: 1px solid var(--border-default);
   border-radius: 16px;
-  background: #fff;
+  background: var(--surface-elevated);
   font-size: 14px;
   translate: -50% -50%;
 }
@@ -383,7 +364,7 @@
   border-radius: 50%;
   background: var(--accent);
   box-shadow:
-    0 0 0 2px #f7f5f0,
+    0 0 0 2px #fdf3ff,
     0 0 0 5px color-mix(in srgb, var(--accent) 28%, transparent);
   transition:
     width 0.25s ease,
@@ -399,37 +380,37 @@
 .pinStop .core {
   width: 6px;
   height: 6px;
-  box-shadow: 0 0 0 1.5px #f7f5f0;
+  box-shadow: 0 0 0 1.5px #fdf3ff;
 }
 
 .pinEnd .core {
   width: 9px;
   height: 9px;
-  background: #f7f5f0;
+  background: #fdf3ff;
   box-shadow:
     inset 0 0 0 1.6px var(--accent),
-    0 0 0 2px #f7f5f0,
+    0 0 0 2px #fdf3ff,
     0 0 0 5px color-mix(in srgb, var(--accent) 24%, transparent);
 }
 
 .pinEco.pinStart .core,
 .pinEco.pinStop .core {
   box-shadow:
-    0 0 0 2px #f7f5f0,
+    0 0 0 2px #fdf3ff,
     0 0 0 7px color-mix(in srgb, var(--accent) 30%, transparent);
 }
 
 .pinEco.pinEnd .core {
   box-shadow:
     inset 0 0 0 1.6px var(--accent),
-    0 0 0 2px #f7f5f0,
+    0 0 0 2px #fdf3ff,
     0 0 0 7px color-mix(in srgb, var(--accent) 30%, transparent);
 }
 
 .num {
   display: none;
   color: #fff;
-  font-family: "Montserrat", sans-serif;
+  font-family: var(--font-sans);
   font-size: 10px;
   font-weight: 700;
   line-height: 1;
@@ -444,7 +425,7 @@
   height: 20px;
   background: var(--accent);
   box-shadow:
-    0 0 0 2px #f7f5f0,
+    0 0 0 2px #fdf3ff,
     0 0 0 6px color-mix(in srgb, var(--accent) 34%, transparent);
 }
 
@@ -472,7 +453,7 @@
 
 .pin:focus-visible .core {
   box-shadow:
-    0 0 0 2px #f7f5f0,
+    0 0 0 2px #fdf3ff,
     0 0 0 4px var(--foreground-ink);
 }
 
@@ -491,7 +472,7 @@
   overflow: hidden;
   border: 1px solid var(--border-default);
   border-radius: 14px;
-  background: #fff;
+  background: var(--surface-elevated);
   box-shadow: none;
 }
 
@@ -506,12 +487,12 @@
 
 .page :global(.maplibregl-ctrl-attrib) {
   background: rgb(241 239 232 / 78%);
-  font-family: "Montserrat", sans-serif;
+  font-family: var(--font-sans);
   font-size: 10px;
 }
 
 .page :global(.maplibregl-ctrl-attrib a) {
-  color: #6f6d67;
+  color: var(--text-secondary);
 }
 
 @keyframes lift {

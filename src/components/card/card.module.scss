@@ -18,12 +18,12 @@
 
 .accent {
   background: var(--accent-primary);
-  color: var(--foreground-ink);
+  color: var(--text-on-accent);
 }
 
 .mint {
   background: var(--accent-mint);
-  color: var(--foreground-ink);
+  color: var(--accent-secondary);
 }
 
 .elevated {

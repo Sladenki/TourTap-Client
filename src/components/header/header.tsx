@@ -22,7 +22,7 @@ export function Header({
   layout,
   links = defaultLinks,
   actionHref = "#bot",
-  actionLabel = "Открыть бота",
+  actionLabel = "Войти",
 }: HeaderProps) {
   return (
     <header className={classNames(styles.header, layout && styles[layout])}>
@@ -32,7 +32,7 @@ export function Header({
           <path
             d="M20.791 20.791V11.209H11.209M20.791 11.209 11.209 20.791"
             fill="none"
-            stroke="#20201e"
+            stroke="#ffffff"
             strokeWidth="1.8"
             strokeLinecap="round"
           />
@@ -48,7 +48,7 @@ export function Header({
       </nav>
       <Button variant="outline" href={actionHref}>
         <span className={styles.actionFull}>{actionLabel}</span>
-        <span className={styles.actionShort}>В бот</span>
+        <span className={styles.actionShort}>Войти</span>
         <svg viewBox="0 0 23 23" width="16" height="16" aria-hidden="true">
           <path
             d="M16.291 16.291V6.709H6.709M16.291 6.709 6.709 16.291"

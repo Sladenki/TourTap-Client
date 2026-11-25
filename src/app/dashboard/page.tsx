@@ -150,7 +150,7 @@ export default function DashboardPage() {
             <path
               d="M20.791 20.791V11.209H11.209M20.791 11.209 11.209 20.791"
               fill="none"
-              stroke="#20201e"
+              stroke="#ffffff"
               strokeWidth="1.8"
               strokeLinecap="round"
             />
@@ -189,7 +189,7 @@ export default function DashboardPage() {
               <path
                 d="M20.791 20.791V11.209H11.209M20.791 11.209 11.209 20.791"
                 fill="none"
-                stroke="#20201e"
+                stroke="#ffffff"
                 strokeWidth="1.8"
                 strokeLinecap="round"
               />

@@ -22,35 +22,35 @@ type LooseStyle = {
 };
 
 const FILL: Record<string, string> = {
-  park: "#e3e7dc",
-  water: "#d0d7de",
-  landuse_residential: "#e8e5de",
-  landcover_wood: "#d9e2d4",
-  landcover_ice_shelf: "#e6e7e2",
-  landcover_glacier: "#e6e7e2",
-  building: "#e5e1d8",
+  park: "#f3fff8",
+  water: "#d5e0f2",
+  landuse_residential: "#f6eafb",
+  landcover_wood: "#e7f8ee",
+  landcover_ice_shelf: "#f4eef8",
+  landcover_glacier: "#f4eef8",
+  building: "#f3e8f8",
 };
 
 const LINE: Record<string, string> = {
   waterway: "#b7c3cc",
-  highway_path: "#e3dfd6",
-  highway_minor: "#fbfaf6",
-  highway_major_casing: "#d2cdc4",
-  highway_major_inner: "#ffffff",
-  highway_major_subtle: "#f4f1ea",
-  highway_motorway_casing: "#cbc6bc",
-  highway_motorway_inner: "#ffffff",
-  highway_motorway_subtle: "#f4f1ea",
-  highway_motorway_bridge_casing: "#cbc6bc",
-  highway_motorway_bridge_inner: "#ffffff",
-  tunnel_motorway_casing: "#d2cdc4",
-  tunnel_motorway_inner: "#f6f4ef",
-  railway: "#d4d0c8",
-  railway_dashline: "#c9c4bb",
-  railway_transit: "#d4d0c8",
-  railway_service: "#ddd9d1",
-  boundary_2: "#c8c3ba",
-  boundary_3: "#d4cfc6",
+  highway_path: "#efe4f6",
+  highway_minor: "#fff",
+  highway_major_casing: "#e4d6ec",
+  highway_major_inner: "#fff",
+  highway_major_subtle: "#f8f0fc",
+  highway_motorway_casing: "#dccae8",
+  highway_motorway_inner: "#fff",
+  highway_motorway_subtle: "#f8f0fc",
+  highway_motorway_bridge_casing: "#dccae8",
+  highway_motorway_bridge_inner: "#fff",
+  tunnel_motorway_casing: "#e4d6ec",
+  tunnel_motorway_inner: "#f8f0fc",
+  railway: "#e4d6ec",
+  railway_dashline: "#d8c6e4",
+  railway_transit: "#e4d6ec",
+  railway_service: "#efe4f6",
+  boundary_2: "#d8c6e4",
+  boundary_3: "#e4d6ec",
 };
 
 const HIDDEN = new Set([
@@ -82,15 +82,15 @@ export function tuneMonochromeStyle(style: LooseStyle) {
     layer.paint = layer.paint ?? {};
     layer.layout = layer.layout ?? {};
 
-    if (layer.id === "background") layer.paint["background-color"] = "#f1efe8";
+    if (layer.id === "background") layer.paint["background-color"] = "#fdf3ff";
     if (FILL[layer.id]) layer.paint["fill-color"] = FILL[layer.id];
     if (LINE[layer.id]) layer.paint["line-color"] = LINE[layer.id];
-    if (layer.id === "building") layer.paint["fill-outline-color"] = "#d9d4ca";
+    if (layer.id === "building") layer.paint["fill-outline-color"] = "#e4d4ee";
     if (HIDDEN.has(layer.id)) layer.layout.visibility = "none";
 
     if (LABEL_LAYERS.has(layer.id)) {
-      layer.paint["text-color"] = "#2a2926";
-      layer.paint["text-halo-color"] = "#f1efe8";
+      layer.paint["text-color"] = "#15181b";
+      layer.paint["text-halo-color"] = "#fdf3ff";
       layer.paint["text-halo-width"] = 1.25;
       layer.layout["text-field"] = ["coalesce", ["get", "name:ru"], ["get", "name"]];
     }
@@ -175,7 +175,7 @@ export function addCityAndRoutes(map: MapLibreMap, data: ReturnType<typeof toRou
           "source-layer": "building",
           minzoom: 13.4,
           paint: {
-            "fill-extrusion-color": "#e6e1d6",
+            "fill-extrusion-color": "#efe4f6",
             "fill-extrusion-opacity": 0.86,
             "fill-extrusion-vertical-gradient": true,
             "fill-extrusion-height": [
@@ -198,7 +198,7 @@ export function addCityAndRoutes(map: MapLibreMap, data: ReturnType<typeof toRou
 
     map.setLight({
       anchor: "viewport",
-      color: "#fff8f0",
+      color: "#fdf6ff",
       intensity: 0.28,
       position: [1.15, 200, 38],
     });
@@ -253,7 +253,7 @@ export function addCityAndRoutes(map: MapLibreMap, data: ReturnType<typeof toRou
       source: SOURCE,
       layout: cap,
       paint: {
-        "line-color": "#f7f5f0",
+        "line-color": "#fdf3ff",
         "line-width": zoomWidth(4.2, 7.4),
         "line-opacity": ["case", ["boolean", ["feature-state", "dim"], false], 0.25, 0.96],
         "line-opacity-transition": { duration: 280, delay: 0 },
@@ -311,7 +311,7 @@ export function addCityAndRoutes(map: MapLibreMap, data: ReturnType<typeof toRou
       filter: none,
       layout: cap,
       paint: {
-        "line-color": "#f7f5f0",
+        "line-color": "#fdf3ff",
         "line-width": zoomWidth(5.4, 8.8),
         "line-opacity": 1,
       },
