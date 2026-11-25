@@ -1,4 +1,5 @@
 import { Button, type Device } from "../button/button";
+import { Logo } from "../logo/logo";
 import styles from "./header.module.scss";
 
 const defaultLinks = [
@@ -26,18 +27,8 @@ export function Header({
 }: HeaderProps) {
   return (
     <header className={classNames(styles.header, layout && styles[layout])}>
-      <a className={styles.logo} href="/">
-        <svg className={styles.mark} viewBox="0 0 32 32" aria-hidden="true">
-          <rect width="32" height="32" rx="10" fill="currentColor" />
-          <path
-            d="M20.791 20.791V11.209H11.209M20.791 11.209 11.209 20.791"
-            fill="none"
-            stroke="#ffffff"
-            strokeWidth="1.8"
-            strokeLinecap="round"
-          />
-        </svg>
-        TourTap
+      <a className={styles.logo} href="/" aria-label="TourTap">
+        <Logo className={styles.mark} alt="" />
       </a>
       <nav className={styles.links} aria-label="Разделы">
         {links.map((link) => (

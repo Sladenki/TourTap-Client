@@ -14,7 +14,7 @@ import {
   type Booking,
 } from "@/lib/live-demo";
 import { supabase } from "@/lib/supabase-browser";
-import { TourMark } from "./tour-mark";
+import { Logo } from "@/components/logo/logo";
 import styles from "./book.module.scss";
 
 export function BookPanel() {
@@ -64,9 +64,8 @@ export function BookPanel() {
   return (
     <div className={styles.page}>
       <header className={styles.bar}>
-        <a className={styles.logo} href="/">
-          <TourMark className={styles.mark} />
-          TourTap
+        <a className={styles.logo} href="/" aria-label="TourTap">
+          <Logo className={styles.mark} alt="" />
         </a>
       </header>
 

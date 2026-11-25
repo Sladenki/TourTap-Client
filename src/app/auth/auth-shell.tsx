@@ -1,3 +1,4 @@
+import { Logo } from "@/components/logo/logo";
 import styles from "./auth.module.scss";
 
 const steps = [
@@ -28,18 +29,8 @@ export function AuthShell({ children }: AuthShellProps) {
   return (
     <div className={styles.shell}>
       <header className={styles.topbar}>
-        <a className={styles.logo} href="/">
-          <svg className={styles.mark} viewBox="0 0 32 32" aria-hidden="true">
-            <rect width="32" height="32" rx="10" fill="currentColor" />
-            <path
-              d="M20.791 20.791V11.209H11.209M20.791 11.209 11.209 20.791"
-              fill="none"
-              stroke="#ffffff"
-              strokeWidth="1.8"
-              strokeLinecap="round"
-            />
-          </svg>
-          TourTap
+        <a className={styles.logo} href="/" aria-label="TourTap">
+          <Logo className={styles.mark} alt="" />
         </a>
         <a className={styles.homeLink} href="/">
           На главный сайт

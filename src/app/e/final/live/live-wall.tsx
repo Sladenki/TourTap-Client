@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { explainBookingError, guestsLabel, liveTour, type Booking } from "@/lib/live-demo";
 import { supabase } from "@/lib/supabase-browser";
-import { TourMark } from "../tour-mark";
+import { Logo } from "@/components/logo/logo";
 import styles from "./live.module.scss";
 
 type LinkState = "connecting" | "live" | "poll";
@@ -98,8 +98,7 @@ export function LiveWall() {
         <div className={styles.brand}>
           <img className={styles.thumb} src={liveTour.image} alt="" />
           <p className={styles.logo}>
-            <TourMark className={styles.mark} />
-            TourTap
+            <Logo className={styles.mark} />
           </p>
         </div>
         <p className={styles.live}>

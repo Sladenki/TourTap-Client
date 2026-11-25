@@ -39,7 +39,7 @@
   align-items: center;
   gap: 8px;
   height: 44px;
-  padding: 0 14px 0 8px;
+  padding: 0 10px;
   border: 1px solid var(--border-default);
   border-radius: var(--radius-pill);
   background: var(--surface-elevated);
@@ -52,9 +52,9 @@
 }
 
 .mark {
-  width: 28px;
+  display: block;
+  width: auto;
   height: 28px;
-  color: var(--accent-primary);
 }
 
 .place {

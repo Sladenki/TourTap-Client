@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Button } from "@/components/button/button";
+import { Logo } from "@/components/logo/logo";
 import styles from "./dashboard.module.scss";
 
 export const metadata: Metadata = {
@@ -144,18 +145,8 @@ export default function DashboardPage() {
   return (
     <div className={styles.shell}>
       <aside className={styles.sidebar}>
-        <a className={styles.brand} href="/">
-          <svg className={styles.mark} viewBox="0 0 32 32" aria-hidden="true">
-            <rect width="32" height="32" rx="10" fill="currentColor" />
-            <path
-              d="M20.791 20.791V11.209H11.209M20.791 11.209 11.209 20.791"
-              fill="none"
-              stroke="#ffffff"
-              strokeWidth="1.8"
-              strokeLinecap="round"
-            />
-          </svg>
-          TourTap
+        <a className={styles.brand} href="/" aria-label="TourTap">
+          <Logo className={styles.mark} alt="" />
         </a>
 
         <nav className={styles.nav} aria-label="Кабинет">
@@ -183,18 +174,8 @@ export default function DashboardPage() {
 
       <div className={styles.main}>
         <header className={styles.topbar}>
-          <a className={`${styles.brand} ${styles.mobileBrand}`} href="/">
-            <svg className={styles.mark} viewBox="0 0 32 32" aria-hidden="true">
-              <rect width="32" height="32" rx="10" fill="currentColor" />
-              <path
-                d="M20.791 20.791V11.209H11.209M20.791 11.209 11.209 20.791"
-                fill="none"
-                stroke="#ffffff"
-                strokeWidth="1.8"
-                strokeLinecap="round"
-              />
-            </svg>
-            TourTap
+          <a className={`${styles.brand} ${styles.mobileBrand}`} href="/" aria-label="TourTap">
+            <Logo className={styles.mark} alt="" />
           </a>
 
           <div className={styles.userBar}>
