@@ -239,14 +239,7 @@ export function addCityAndRoutes(map: MapLibreMap, data: ReturnType<typeof toRou
         "line-color": "#b7dcc8",
         "line-width": zoomWidth(11, 20),
         "line-blur": 2.4,
-        "line-opacity": [
-          "case",
-          ["boolean", ["feature-state", "dim"], false],
-          0.08,
-          ["boolean", ["feature-state", "hot"], false],
-          0,
-          0.7,
-        ],
+        "line-opacity": ["case", ["boolean", ["feature-state", "dim"], false], 0.08, 0.7],
         "line-opacity-transition": { duration: 280, delay: 0 },
       },
     },
@@ -262,14 +255,7 @@ export function addCityAndRoutes(map: MapLibreMap, data: ReturnType<typeof toRou
       paint: {
         "line-color": "#f7f5f0",
         "line-width": zoomWidth(4.2, 7.4),
-        "line-opacity": [
-          "case",
-          ["boolean", ["feature-state", "hot"], false],
-          0,
-          ["boolean", ["feature-state", "dim"], false],
-          0.25,
-          0.96,
-        ],
+        "line-opacity": ["case", ["boolean", ["feature-state", "dim"], false], 0.25, 0.96],
         "line-opacity-transition": { duration: 280, delay: 0 },
       },
     },
@@ -287,8 +273,6 @@ export function addCityAndRoutes(map: MapLibreMap, data: ReturnType<typeof toRou
         "line-width": zoomWidth(2.4, 4.6),
         "line-opacity": [
           "case",
-          ["boolean", ["feature-state", "hot"], false],
-          0,
           ["boolean", ["feature-state", "dim"], false],
           0.18,
           ["==", ["get", "category"], "eco"],
@@ -364,8 +348,8 @@ export function syncScene(map: MapLibreMap, state: SceneState) {
   const categoryFilter: FilterSpecification | null =
     state.category === "all" ? null : ["==", ["get", "category"], state.category];
   const ids = [...new Set([state.selectedId, state.hoverId].filter((id): id is string => Boolean(id)))];
-  const focusFilter: FilterSpecification = ids.length
-    ? (["any", ...ids.map((id) => ["==", ["get", "id"], id])] as FilterSpecification)
+  const focusFilter: FilterSpecification = state.selectedId
+    ? ["==", ["get", "id"], state.selectedId]
     : ["==", ["get", "id"], ""];
   const combine = (filter: FilterSpecification): FilterSpecification =>
     categoryFilter ? (["all", categoryFilter, filter] as FilterSpecification) : filter;

@@ -86,6 +86,7 @@ export default function MapExperience() {
     if (!container) return;
     let map: MapLibreMap | null = null;
     let cancelled = false;
+    let clearHover = 0;
 
     const onResize = () => map?.resize();
     window.addEventListener("resize", onResize);
@@ -116,13 +117,22 @@ export default function MapExperience() {
         mapRef.current = map;
         map.addControl(new NavigationControl({ showCompass: true, visualizePitch: true }), "top-right");
 
-        const routeLayers = ["route-focus", "route-line", "route-casing", "zone-core", "zone-mid", "zone-outer", "zone-field"];
+        const routeLayers = ["route-focus", "route-line", "route-casing"];
+        let hovered = "";
         const hitId = (point: MapMouseEvent["point"]) => {
           if (!map?.isStyleLoaded()) return null;
           const layers = routeLayers.filter((id) => map?.getLayer(id));
           if (!layers.length) return null;
-          const hits = map.queryRenderedFeatures(point, { layers });
-          return typeof hits[0]?.properties?.id === "string" ? hits[0].properties.id : null;
+          const box: [[number, number], [number, number]] = [
+            [point.x - 8, point.y - 8],
+            [point.x + 8, point.y + 8],
+          ];
+          const hits = map.queryRenderedFeatures(box, { layers });
+          const ids = hits
+            .map((feature) => feature.properties?.id)
+            .filter((id): id is string => typeof id === "string");
+          if (hovered && ids.includes(hovered)) return hovered;
+          return ids[0] ?? null;
         };
 
         map.on("load", () => {
@@ -150,9 +160,23 @@ export default function MapExperience() {
               core.append(num);
               button.append(pulse, core);
 
-              button.addEventListener("mouseenter", () => hoverRef.current(item.id));
-              button.addEventListener("mouseleave", () => hoverRef.current(null));
-              button.addEventListener("focus", () => hoverRef.current(item.id));
+              button.addEventListener("mouseenter", () => {
+                window.clearTimeout(clearHover);
+                hovered = item.id;
+                hoverRef.current(item.id);
+              });
+              button.addEventListener("mouseleave", () => {
+                window.clearTimeout(clearHover);
+                clearHover = window.setTimeout(() => {
+                  if (hovered !== item.id) return;
+                  hovered = "";
+                  hoverRef.current(null);
+                }, 90);
+              });
+              button.addEventListener("focus", () => {
+                hovered = item.id;
+                hoverRef.current(item.id);
+              });
               button.addEventListener("click", (event) => {
                 event.stopPropagation();
                 selectRef.current(item.id);
@@ -179,10 +203,28 @@ export default function MapExperience() {
 
         map.on("mousemove", (event) => {
           const id = hitId(event.point);
-          hoverRef.current(id);
-          map?.getCanvas().style.setProperty("cursor", id ? "pointer" : "");
+          if (id) {
+            window.clearTimeout(clearHover);
+            hovered = id;
+            hoverRef.current(id);
+            map?.getCanvas().style.setProperty("cursor", "pointer");
+            return;
+          }
+          window.clearTimeout(clearHover);
+          clearHover = window.setTimeout(() => {
+            hovered = "";
+            hoverRef.current(null);
+            map?.getCanvas().style.setProperty("cursor", "");
+          }, 90);
         });
-        map.on("mouseout", () => hoverRef.current(null));
+        map.on("mouseout", (event) => {
+          const next = event.originalEvent.relatedTarget;
+          if (next instanceof Element && next.closest("button")) return;
+          window.clearTimeout(clearHover);
+          hovered = "";
+          hoverRef.current(null);
+          map?.getCanvas().style.setProperty("cursor", "");
+        });
         map.on("click", (event) => selectRef.current(hitId(event.point)));
       } catch {
         if (!cancelled) setFailed(true);
@@ -193,6 +235,7 @@ export default function MapExperience() {
 
     return () => {
       cancelled = true;
+      window.clearTimeout(clearHover);
       window.removeEventListener("resize", onResize);
       markersRef.current = [];
       map?.remove();
